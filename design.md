@@ -1,3 +1,57 @@
+To-Do:
+General:
+	--Download/install flask, flask-wtf, postgresql sqlalchemy, sqlalchemy-searchable, ... 
+	--update requirements.txt (pip freeze > 'requirements.txt')
+	--set up config.py
+	--set up run.py
+	--do we need to put anything in the various __init__.py files?
+	--set up base.html (app/templates/base.html)
+	--set up error page (app/templates/404.html) 
+
+Auth:
+	--create a login form (blop/app/auth/forms.py)
+	--create a user database (blop/app/auth/models.py)
+	--add a single entry to db (user: admin, password: ??? (pick something and tell us))
+	--create a route and view function (blop/app/auth/views.py)
+	--set up authorization (pick a package to use for login, install & add to requirements.txt; set up config, etc.)
+	--add authorization requirement to view submission form/page, as well as have 'submit incident' in the navigation bar
+	-- set up 'login' page (blop/app/templates/auth/login.html)
+
+Blotter:
+	--create a submission form (blop/app/blotter/forms.py)
+	--create database schema on paper or in excel
+		--needs to include event types, sub-types/specifics, locations, maybe sub-locations, time & date, synopsis
+	--add db classes/models to /blotter/models.py
+	--create a route and view function for submission page (/blotter/views.py)
+		--in order to get the form to respond (e.g. I select 'AOD' and another field appears with different kinds of AODs like marijuana, alcohol, cocaine, etc.) you'll probably have to work with javascript to make it respond correctly.
+	--set up the form submission template (app/templates/blotter/submit.html)
+		--this needs to have an authorization requirement
+	--set up the blotter page (app/templates/blotter/blotter.html)
+
+Map:
+	--section off the map into regions
+		--regions should roughly correspond to ARMS codes provided by Nano
+	--create shapes to represent different types of incidents
+		--probably top 4-6 types and an 'other' to catch the rest
+	--create db schema on paper or in excel
+		--needs to relate locations to map regions, incident types to shapes
+	--create db models in map/models.py OR add to blotter/models.py?
+	--add map and incident shapes to static folder?
+	--figure out how to call and display the map and shapes with numbers
+	--set up view function to display data for a default amount of time
+		-a count of events of x type, on a shape, in a region on the map
+	--figure out how to make a pop-out window happen, then construct the views so that clicking on a symbol causes a pop-out window to display the blotter page of those events
+
+Search:
+	***We may decide to incorporate search functionality into the individual blotter and map pages; for now, I'm imagining a separate search page with an option to display results as a blotter or a map***
+	--modify/create db schema to allow for searchability
+	--create search form
+	--set up views function
+	--set up search page html 
+
+
+-------------------------------------------------------------------------------
+
 This is a two-part project:
 
 First: we'll create something very akin to a web-based CSO blotter.  This will be a web view showing a log in which each entry briefly details an event the CSOs responded to on campus. There will be sorting and filtering capabilities of a relatively high-level sort: 
@@ -62,41 +116,49 @@ Non-Coding things to do:
 The following gives the structure for the app. You can see this if you `brew install tree` and then go into the root folder `/blop` and type `tree`
 
 blop
-├── LICENSE					
+├── LICENSE
 ├── README.md
-├── app 						# contains all modules
-│   ├── __init__.py 			# allows /app to be imported, 
-│   ├── analytics 				# empty for now; if we get to analytics we can 								   		# add views
-│   ├── auth 					# for now we create one login for the admin 									# who will be submitting forms 
-│   │   ├── __init__.py 		# allows auth to be imported elsewhere
-│   │   ├── forms.py 			# there should be a 'login' form
-│   │   ├── models.py 			# the db model should have a user id and 										# password and we should just put a single 									   # admin user in it. eventually auth will 									# be handled via the reed server, but for 									  # now we just have a single admin name/pw
-│   │   └── views.py 			# should have a route for the login page
-│   ├── blotter 				# this module contains the blotter page and 									# the incident submission form
-│   │   ├── __init__.py 		# allows module to be imported elsewhere
-│   │   ├── forms.py 			# should have incident submission form & 										# search forms
-│   │   ├── models.py 			# this should contain the db models for 										# incidents, types of incidents, & 											# locations
-│   │   └── views.py 			# create routes to the submission form and the 								   	   # blotter page
-│   ├── map 					# module for placing incidents on the map
-│   │   ├── __init__.py 		# allows module to be imported elsewhere
-│   │   ├── forms.py 			# contains forms for searching the map
-│   │   ├── models.py 			# contains db models relating incident 											# locations to regions of the map, and 										# incident types to types of symbols
-│   │   └── views.py 			# creates route for map to be visible and show 									   # incident data
-│   ├── static 					# contains static stuff like CSS
-│   └── templates				# holds all the html templates for the app
-│       ├── 404.html 			# what the user sees when the page isn't found
-		|-- base.html 			# base template (all others will extent). 								# Contains header, navigation bar
-│       ├── analytics 			# will eventually contain html page for the 									# analytics module
-│       ├── auth 				# html related to auth module
-│       │   └── signin.html 	# sign in page html
-│       ├── blotter 			# html related to blotter module
-│       │   ├── blotter.html 	# page that will display the blotter 											# (incidents, most recent first)
-│       │   └── submit.html 	# page containing the incident submission form
-│       └── map 				# html related to map module
-│           └── map.html 		# page displaying the map and incident markers
-├── config.py 					# configuration file
-└── design.md 					# the file you're currently looking at. used 									# for planning the project
-|__ requirements.txt 			# captures the required packages/software to 									# run the app
+├── app
+│   ├── __init__.py
+│   ├── analytics
+│   ├── auth
+│   │   ├── __init__.py
+│   │   ├── forms.py
+│   │   ├── models.py
+│   │   └── views.py
+│   ├── blotter
+│   │   ├── __init__.py
+│   │   ├── forms.py
+│   │   ├── models.py
+│   │   └── views.py
+│   ├── map
+│   │   ├── __init__.py
+│   │   ├── forms.py
+│   │   ├── models.py
+│   │   └── views.py
+│   ├── search
+│   │   ├── __init__.py
+│   │   ├── forms.py
+│   │   ├── models.py
+│   │   └── views.py
+│   ├── static
+│   └── templates
+│       ├── 404.html
+│       ├── analytics
+│       ├── auth
+│       │   └── signin.html
+│       ├── base.html
+│       ├── blotter
+│       │   ├── blotter.html
+│       │   └── submit.html
+│       ├── map
+│       │   └── map.html
+│       └── search
+│           └── search.html
+├── config.py
+├── design.md
+└── requirements.txt
+
 
 
 
