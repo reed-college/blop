@@ -59,6 +59,46 @@ Non-Coding things to do:
 	Email CSOs and CUS re: figuring out how to export data from the ARMS database
 
 
+The following gives the structure for the app. You can see this if you `brew install tree` and then go into the root folder `/blop` and type `tree`
+
+blop
+├── LICENSE					
+├── README.md
+├── app 						# contains all modules
+│   ├── __init__.py 			# allows /app to be imported, 
+│   ├── analytics 				# empty for now; if we get to analytics we can 								   		# add views
+│   ├── auth 					# for now we create one login for the admin 									# who will be submitting forms 
+│   │   ├── __init__.py 		# allows auth to be imported elsewhere
+│   │   ├── forms.py 			# there should be a 'login' form
+│   │   ├── models.py 			# the db model should have a user id and 										# password and we should just put a single 									   # admin user in it. eventually auth will 									# be handled via the reed server, but for 									  # now we just have a single admin name/pw
+│   │   └── views.py 			# should have a route for the login page
+│   ├── blotter 				# this module contains the blotter page and 									# the incident submission form
+│   │   ├── __init__.py 		# allows module to be imported elsewhere
+│   │   ├── forms.py 			# should have incident submission form & 										# search forms
+│   │   ├── models.py 			# this should contain the db models for 										# incidents, types of incidents, & 											# locations
+│   │   └── views.py 			# create routes to the submission form and the 								   	   # blotter page
+│   ├── map 					# module for placing incidents on the map
+│   │   ├── __init__.py 		# allows module to be imported elsewhere
+│   │   ├── forms.py 			# contains forms for searching the map
+│   │   ├── models.py 			# contains db models relating incident 											# locations to regions of the map, and 										# incident types to types of symbols
+│   │   └── views.py 			# creates route for map to be visible and show 									   # incident data
+│   ├── static 					# contains static stuff like CSS
+│   └── templates				# holds all the html templates for the app
+│       ├── 404.html 			# what the user sees when the page isn't found
+		|-- base.html 			# base template (all others will extent). 								# Contains header, navigation bar
+│       ├── analytics 			# will eventually contain html page for the 									# analytics module
+│       ├── auth 				# html related to auth module
+│       │   └── signin.html 	# sign in page html
+│       ├── blotter 			# html related to blotter module
+│       │   ├── blotter.html 	# page that will display the blotter 											# (incidents, most recent first)
+│       │   └── submit.html 	# page containing the incident submission form
+│       └── map 				# html related to map module
+│           └── map.html 		# page displaying the map and incident markers
+├── config.py 					# configuration file
+└── design.md 					# the file you're currently looking at. used 									# for planning the project
+|__ requirements.txt 			# captures the required packages/software to 									# run the app
+
+
 
 
 
