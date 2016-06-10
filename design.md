@@ -1,20 +1,45 @@
 SET-UP INSTRUCTIONS
--clone the repo (git clone https://github.com/reed-college/blop)
--check your remote (git remote -v)
--make the reed-college/blop repo the upstream (git remote add upstream https:github.com/reed-college/blop.git) (check remote again, make sure upstream is right)
--create a new branch (so when you push to github it pushes to your branch and not to master, that way we can all verify before committing it to master): git checkout -b [branch name] (probably best to just use your name)
--push your branch to github (git push upstream [name])
+-clone the repo (`git clone https://github.com/reed-college/blop`) and cd into it
+-check your remote (`git remote -v`)
+-make the reed-college/blop repo the upstream (`git remote add upstream https://github.com/reed-college/blop.git`) (check remote again, make sure upstream is right)
+-create a new branch (so when you push to github it pushes to your branch and not to master, that way we can all verify before committing it to master): `git checkout -b [branch name]` (probably best to just use your name)
+-push your branch to github `(git push upstream [name])`
 - a few other commands:
-	to pull in changes from the master branch to yours: git fetch upstream
-	to merge those changes with your branch: git merge upstream
-	to delete your branch locally: git branch -d [name]
-	then to delete it on github: git push upstream :[name]
+	to pull in changes from the master branch to yours: `git fetch upstream`
+	to merge those changes with your branch: `git merge upstream`
+	to delete your branch locally: `git branch -d [name]`
+	then to delete it on github: `git push upstream :[name]`
 so when you make changes you want to commit and send to github, do this:
-	stage all changes: git add .
-	commit all changes: git commit -am "some message"
-	push to master: git push upstream [name]
+	stage all changes: `git add .`
+	commit all changes: `git commit -am "some message"`
+	push to master: `git push upstream [name]`
+
+To check if you have things needing to be committed/added, run `git status`
 
 
+Once you have the repo cloned and are working on your branch (`git branch` will tell you which branch you're on. `git checkout [branch]` will switch branches. don't change things locally on the master branch...), create your virtualenv however you do that.
+
+run `pip install -r requirements.txt`
+
+Then we need to set the PYTHONPATH environment variable, so that the path when you activate your virtualenvironment is the root folder of the blop directory. Using virtualenvwrapper, that means you have to set the variable in the 'postactivate' hook inside the folder that contains your virtualenvs. To find that folder, run `echo $WORKON_HOME` ... for me this is 
+`~/.python_virtualenvs`. 
+
+run `subl/nano/vim ~/[folder_containing_virtualenvs]/[blop_virtual_env_name]/bin/postactivate`
+So for me it's: `subl ~/.python_virtualenvs/blop/bin/postactivate`
+Type in that document `export PYTHONPATH=[path_to_blop_root_folder]`
+So for me it's `export PYTHONPATH=~/SDS/blop`
+Save and exit.
+De-activate and re-activate your virtual environment, then run `echo $PYTHONPATH` and you should see the path to blop's root folder.
+
+Next, you need to set up the database. You must have postgres running on your machine.
+Run `psql`
+In the shell (is this a shell? idk) run `create database blop;` and then `\l` - make sure `blop` is one of the listed databases, then run `\q` to quit.
+
+Next, from the root folder of blop, run `python scripts/manage.py db init`
+Then `python scripts/manage.py db migrate`
+then `python scripts/manage.py db upgrade`
+
+Aaaaand we should be good to go!
 
 
 
