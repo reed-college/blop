@@ -1,16 +1,36 @@
+SET-UP INSTRUCTIONS
+-clone the repo (git clone https://github.com/reed-college/blop)
+-check your remote (git remote -v)
+-make the reed-college/blop repo the upstream (git remote add upstream https:github.com/reed-college/blop.git) (check remote again, make sure upstream is right)
+-create a new branch (so when you push to github it pushes to your branch and not to master, that way we can all verify before committing it to master): git checkout -b [branch name] (probably best to just use your name)
+-push your branch to github (git push upstream [name])
+- a few other commands:
+	to pull in changes from the master branch to yours: git fetch upstream
+	to merge those changes with your branch: git merge upstream
+	to delete your branch locally: git branch -d [name]
+	then to delete it on github: git push upstream :[name]
+so when you make changes you want to commit and send to github, do this:
+	stage all changes: git add .
+	commit all changes: git commit -am "some message"
+	push to master: git push upstream [name]
+
+
+
+
+
+
+
+
+
+
+
 To-Do:
 General:
-	--Download/install flask, flask-wtf, postgresql sqlalchemy, sqlalchemy-searchable, ... 
-	--update requirements.txt (pip freeze > 'requirements.txt')
-	--set up config.py
-	--set up run.py
-	--do we need to put anything in the various __init__.py files?
 	--set up base.html (app/templates/base.html)
 	--set up error page (app/templates/404.html) 
 
 Auth:
 	--create a login form (blop/app/auth/forms.py)
-	--create a user database (blop/app/auth/models.py)
 	--add a single entry to db (user: admin, password: ??? (pick something and tell us))
 	--create a route and view function (blop/app/auth/views.py)
 	--set up authorization (pick a package to use for login, install & add to requirements.txt; set up config, etc.)
@@ -18,24 +38,20 @@ Auth:
 	-- set up 'login' page (blop/app/templates/auth/login.html)
 
 Blotter:
-	--create a submission form (blop/app/blotter/forms.py)
-	--create database schema on paper or in excel
-		--needs to include event types, sub-types/specifics, locations, maybe sub-locations, time & date, synopsis
-	--add db classes/models to /blotter/models.py
-	--create a route and view function for submission page (/blotter/views.py)
+	--create a submission form
+	--add db classes/models to
+	--create a route and view function for submission page
 		--in order to get the form to respond (e.g. I select 'AOD' and another field appears with different kinds of AODs like marijuana, alcohol, cocaine, etc.) you'll probably have to work with javascript to make it respond correctly.
-	--set up the form submission template (app/templates/blotter/submit.html)
-		--this needs to have an authorization requirement
-	--set up the blotter page (app/templates/blotter/blotter.html)
+	--set up the form submission template
+		--this needs to have an authorization requirement (@login_required)
+	--set up the blotter view & template
 
 Map:
 	--section off the map into regions
 		--regions should roughly correspond to ARMS codes provided by Nano
 	--create shapes to represent different types of incidents
 		--probably top 4-6 types and an 'other' to catch the rest
-	--create db schema on paper or in excel
-		--needs to relate locations to map regions, incident types to shapes
-	--create db models in map/models.py OR add to blotter/models.py?
+	--create db models
 	--add map and incident shapes to static folder?
 	--figure out how to call and display the map and shapes with numbers
 	--set up view function to display data for a default amount of time

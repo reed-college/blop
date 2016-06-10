@@ -1,7 +1,14 @@
 from flask import Flask, render_template
+from blop import db
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.debug = True
+app.config['SQLALCHEMY_DATABASE_URI'] = db.db_url
+
+from blop import models
+
+db = SQLAlchemy(app)
 
 @app.route('/login/')
 def login():
