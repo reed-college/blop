@@ -1,16 +1,61 @@
+SET-UP INSTRUCTIONS
+-clone the repo (`git clone https://github.com/reed-college/blop`) and cd into it
+-check your remote (`git remote -v`)
+-make the reed-college/blop repo the upstream (`git remote add upstream https://github.com/reed-college/blop.git`) (check remote again, make sure upstream is right)
+-create a new branch (so when you push to github it pushes to your branch and not to master, that way we can all verify before committing it to master): `git checkout -b [branch name]` (probably best to just use your name)
+-push your branch to github `(git push upstream [name])`
+- a few other commands:
+	to pull in changes from the master branch to yours: `git fetch upstream`
+	to merge those changes with your branch: `git merge upstream`
+	to delete your branch locally: `git branch -d [name]`
+	then to delete it on github: `git push upstream :[name]`
+so when you make changes you want to commit and send to github, do this:
+	stage all changes: `git add .`
+	commit all changes: `git commit -am "some message"`
+	push to master: `git push upstream [name]`
+
+To check if you have things needing to be committed/added, run `git status`
+
+
+Once you have the repo cloned and are working on your branch (`git branch` will tell you which branch you're on. `git checkout [branch]` will switch branches. don't change things locally on the master branch...), create your virtualenv however you do that.
+
+run `pip install -r requirements.txt`
+
+Then we need to set the PYTHONPATH environment variable, so that the path when you activate your virtualenvironment is the root folder of the blop directory. Using virtualenvwrapper, that means you have to set the variable in the 'postactivate' hook inside the folder that contains your virtualenvs. To find that folder, run `echo $WORKON_HOME` ... for me this is 
+`~/.python_virtualenvs`. 
+
+run `subl/nano/vim ~/[folder_containing_virtualenvs]/[blop_virtual_env_name]/bin/postactivate`
+So for me it's: `subl ~/.python_virtualenvs/blop/bin/postactivate`
+Type in that document `export PYTHONPATH=[path_to_blop_root_folder]`
+So for me it's `export PYTHONPATH=~/SDS/blop`
+Save and exit.
+De-activate and re-activate your virtual environment, then run `echo $PYTHONPATH` and you should see the path to blop's root folder.
+
+Next, you need to set up the database. You must have postgres running on your machine.
+Run `psql`
+In the shell (is this a shell? idk) run `create database blop;` and then `\l` - make sure `blop` is one of the listed databases, then run `\q` to quit.
+
+Next, from the root folder of blop, run `python scripts/manage.py db init`
+Then `python scripts/manage.py db migrate`
+then `python scripts/manage.py db upgrade`
+
+Aaaaand we should be good to go!
+
+
+
+
+
+
+
+
+
 To-Do:
 General:
-	--Download/install flask, flask-wtf, postgresql sqlalchemy, sqlalchemy-searchable, ... 
-	--update requirements.txt (pip freeze > 'requirements.txt')
-	--set up config.py
-	--set up run.py
-	--do we need to put anything in the various __init__.py files?
 	--set up base.html (app/templates/base.html)
 	--set up error page (app/templates/404.html) 
 
 Auth:
 	--create a login form (blop/app/auth/forms.py)
-	--create a user database (blop/app/auth/models.py)
 	--add a single entry to db (user: admin, password: ??? (pick something and tell us))
 	--create a route and view function (blop/app/auth/views.py)
 	--set up authorization (pick a package to use for login, install & add to requirements.txt; set up config, etc.)
@@ -18,24 +63,20 @@ Auth:
 	-- set up 'login' page (blop/app/templates/auth/login.html)
 
 Blotter:
-	--create a submission form (blop/app/blotter/forms.py)
-	--create database schema on paper or in excel
-		--needs to include event types, sub-types/specifics, locations, maybe sub-locations, time & date, synopsis
-	--add db classes/models to /blotter/models.py
-	--create a route and view function for submission page (/blotter/views.py)
+	--create a submission form
+	--add db classes/models to
+	--create a route and view function for submission page
 		--in order to get the form to respond (e.g. I select 'AOD' and another field appears with different kinds of AODs like marijuana, alcohol, cocaine, etc.) you'll probably have to work with javascript to make it respond correctly.
-	--set up the form submission template (app/templates/blotter/submit.html)
-		--this needs to have an authorization requirement
-	--set up the blotter page (app/templates/blotter/blotter.html)
+	--set up the form submission template
+		--this needs to have an authorization requirement (@login_required)
+	--set up the blotter view & template
 
 Map:
 	--section off the map into regions
 		--regions should roughly correspond to ARMS codes provided by Nano
 	--create shapes to represent different types of incidents
 		--probably top 4-6 types and an 'other' to catch the rest
-	--create db schema on paper or in excel
-		--needs to relate locations to map regions, incident types to shapes
-	--create db models in map/models.py OR add to blotter/models.py?
+	--create db models
 	--add map and incident shapes to static folder?
 	--figure out how to call and display the map and shapes with numbers
 	--set up view function to display data for a default amount of time
