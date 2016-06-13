@@ -35,9 +35,9 @@ Next, you need to set up the database. You must have postgres running on your ma
 Run `psql`
 In the shell (is this a shell? idk) run `create database blop;` and then `\l` - make sure `blop` is one of the listed databases, then run `\q` to quit.
 
-Next, from the root folder of blop, run `python scripts/manage.py db init`
-Then `python scripts/manage.py db migrate`
-then `python scripts/manage.py db upgrade`
+Next, from the root folder of blop, run `python scripts/manage.py db upgrade`
+
+Then to seed the database with types and locations, run `python scripts/manage.py seed`
 
 Aaaaand we should be good to go!
 

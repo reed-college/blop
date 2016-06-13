@@ -1,20 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from blop.app import app, db
 
-class Admin(db.Model):
-	__tablename__ = 'admin'
-
-	id = db.Column(db.Integer, primary_key=True)
-	username = db.Column(db.String(25))
-	password = db.Column(db.String(25))
-
-	def __init__(self, username, password):
-		self.username = username
-		self.password = password
-
-	def __repr__(self):
-		return '<user {}>'.format(self.username)
-
 class Type(db.Model):
 	__tablename__ = 'types'
 
@@ -35,12 +21,14 @@ class GeneralLocation(db.Model):
 
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(100))
+	oncampus = db.Column(db.Boolean())
 	specloc = db.relationship('SpecificLocation', backref='general_location', lazy='dynamic')
 	incidents = db.relationship('Incident', backref='general_location', lazy='dynamic')
 
-	def __init__(self, id, name):
+	def __init__(self, id, name, oncampus):
 		self.id = id
 		self.name = name
+		self.oncampus = oncampus
 
 	def __repr__(self):
 		return '<General Location {}>'.format(self.name)
