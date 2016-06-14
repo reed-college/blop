@@ -1,80 +1,90 @@
-from flask_sqlalchemy import SQLAlchemy
-from blop.app import app, db
+from blop.app import db
+
 
 class Type(db.Model):
-	__tablename__ = 'types'
+    __tablename__ = 'types'
 
-	id = db.Column(db.Integer, primary_key=True)
-	code = db.Column(db.String(15))
-	description = db.Column(db.String(100))
+    id = db.Column(db.Integer, primary_key=True)
+    code = db.Column(db.String(15))
+    description = db.Column(db.String(100))
 
-	def __init__(self, id, code, description):
-		self.id = id
-		self.code = code
-		self.description = description
+    def __init__(self, id, code, description):
+        self.id = id
+        self.code = code
+        self.description = description
 
-	def __repr__(self):
-		return '<Incident Type {}>'.format(self.description)
+    def __repr__(self):
+        return '<Incident Type {}>'.format(self.description)
+
 
 class GeneralLocation(db.Model):
-	__tablename__ = 'general_locations'
+    __tablename__ = 'general_locations'
 
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(100))
-	oncampus = db.Column(db.Boolean())
-	specloc = db.relationship('SpecificLocation', backref='general_location', lazy='dynamic')
-	incidents = db.relationship('Incident', backref='general_location', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    oncampus = db.Column(db.Boolean())
+    specloc = db.relationship('SpecificLocation', backref='general_location',
+                              lazy='dynamic')
+    incidents = db.relationship('Incident', backref='general_location',
+                                lazy='dynamic')
 
-	def __init__(self, id, name, oncampus):
-		self.id = id
-		self.name = name
-		self.oncampus = oncampus
+    def __init__(self, id, name, oncampus):
+        self.id = id
+        self.name = name
+        self.oncampus = oncampus
 
-	def __repr__(self):
-		return '<General Location {}>'.format(self.name)
+    def __repr__(self):
+        return '<General Location {}>'.format(self.name)
+
 
 class SpecificLocation(db.Model):
-	__tablename__ = 'specific_locations'
+    __tablename__ = 'specific_locations'
 
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(100))
-	general_location_id = db.Column(db.Integer, db.ForeignKey('general_locations.id'))
-	incidents = db.relationship('Incident', backref='specific_location', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    general_location_id = db.Column(db.Integer, db.ForeignKey(
+                                   'general_locations.id'))
+    incidents = db.relationship('Incident', backref='specific_location',
+                                lazy='dynamic')
 
-	def __init__(self, id, name, general_location_id):
-		self.id = id
-		self.name = name
-		self.general_location_id = general_location_id
+    def __init__(self, id, name, general_location_id):
+        self.id = id
+        self.name = name
+        self.general_location_id = general_location_id
 
-	def __repr__(self):
-		return '<Specific Location {}>'.format(self.name)
+    def __repr__(self):
+        return '<Specific Location {}>'.format(self.name)
+
 
 class Incident(db.Model):
-	__tablename__ = 'incidents'
+    __tablename__ = 'incidents'
 
-	id = db.Column(db.Integer, primary_key = True)
-	date = db.Column(db.Date)
-	time = db.Column(db.Time)
-	summary = db.Column(db.String(500))
-	type_mapping = db.relationship('Type', secondary='mapping', backref=db.backref('incident', lazy='dynamic'))
-	general_location_id = db.Column(db.Integer, db.ForeignKey('general_locations.id'))
-	specific_location_id = db.Column(db.Integer, db.ForeignKey('specific_locations.id'))
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date)
+    time = db.Column(db.Time)
+    summary = db.Column(db.String(500))
+    type_mapping = db.relationship('Type', secondary='mapping',
+                                   backref=db.backref('incident',
+                                                      lazy='dynamic'))
+    general_location_id = db.Column(db.Integer, db.ForeignKey(
+                                    'general_locations.id'))
+    specific_location_id = db.Column(db.Integer, db.ForeignKey(
+                                    'specific_locations.id'))
 
-	def __init__(self, id, date, time, summary, type_id, general_location_id, specific_location_id):
-		self.id = id
-		self.date = date
-		self.time = time
-		self.summary = summary
-		self.general_location_id = general_location_id
-		self.specific_location_id = specific_location_id
+    def __init__(self, id, date, time, summary, type_id, general_location_id,
+                 specific_location_id):
+        self.id = id
+        self.date = date
+        self.time = time
+        self.summary = summary
+        self.general_location_id = general_location_id
+        self.specific_location_id = specific_location_id
 
-	def __repr__(self):
-		return '<incident {}>'.format(self.id)
+    def __repr__(self):
+        return '<incident {}>'.format(self.id)
 
-mapping = db.Table('mapping', 
-	db.Column('type_id', db.Integer, db.ForeignKey('types.id')),
-	db.Column('incident_id', db.Integer, db.ForeignKey('incidents.id'))
-)
-
-if __name__ == '__main__':
-    manager.run()
+mapping = db.Table('mapping',
+                   db.Column('type_id', db.Integer, db.ForeignKey('types.id')),
+                   db.Column('incident_id', db.Integer,
+                             db.ForeignKey('incidents.id'))
+                   )
