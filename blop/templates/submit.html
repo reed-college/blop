@@ -5,10 +5,10 @@
 
 	<h1><div style='align-center'>Submit an Event</div></h1>
 	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
-	<form action="" method="get">
+	<form action="/processform" method="post">
 		<div id='dynamicSubtype'>
 			<label for="incident type">Incident Code</label><br>
-			<select id="incident dropdown">
+			<select id="incident dropdown" name="incident dropdown">
 				<option value="0">Select a Code</option>
 				<option value="1">Code 1</option>
 				<option value="2">Code 2</option>
@@ -24,13 +24,13 @@
 		</div>
 		<div id="location">
 			<label for="location">Incident Location</label><br>
-			<select id="location dropdown">
+			<select id="location dropdown" name="location dropdown">
 				<option value="0">Select a Location</option>
 				<option value="1">On-Campus</option>
 				<option value="2">Off-Campus</option>
 				<option value="3">Residence Hall</option>
 			</select><br>
-			<select>
+			<select id="sublocation dropdown" name="sublocation dropdown">
 				<option value="30">Select a Sublocation (Optional)</option>
 				<option value="4">Anna Mann</option>
 				<option value="5">Birchwood Apartments</option>
@@ -62,7 +62,7 @@
 		</div>
 		<div"date">
 			<label for="date">Date of Incident</label><br>
-			<select id="month dropdown">
+			<select id="month dropdown" name="month dropdown">
 				<option value="0">Select a Month</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
@@ -77,7 +77,7 @@
 				<option value="11">November</option>
 				<option value="12">December</option>
 			</select>
-			<select id="day dropdown">
+			<select id="day dropdown" name="day dropdown">
 				<option value="0">Select a Day</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -114,7 +114,7 @@
 		</div>
 		<div id="time">
 			<label for="time">Time of Incident</label><br>
-			<select id="hour dropdown">
+			<select id="hour dropdown" name="hour dropdown">
 				<option value="12">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -129,20 +129,20 @@
 				<option value="11">11</option>
 			</select>
 			:
-			<select id="minute dropdown">
+			<select id="minute dropdown" name="minute dropdown">
 				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
 			</select>
-			<select id="AM/PM dropdown">
+			<select id="AM/PM dropdown" name="AM/PM dropdown">
 				<option value="0">AM</option>
 				<option value="1">PM</option>
 			</select><br><br>
 		</div>	
 		<div id="summary">
 			<label for="summary">Summary of Incident</label><br>
-			<textarea rows="8" cols="75" placeholder="Enter a summary of the incident here."></textarea><br><br>
+			<textarea rows="8" cols="75" placeholder="Enter a summary of the incident here." name="incident summary"></textarea><br><br>
 		</div>
 		<div id="submit">
 			<input type="submit" value="Submit an Incident">
