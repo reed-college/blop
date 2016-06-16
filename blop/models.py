@@ -54,7 +54,7 @@ class Incident(db.Model):
         self.types = types
 
     def __repr__(self):
-        return '<incident {}>'.format(self.id)
+        return '<incident {}>'.format(self.datetime)
 
 mapping = db.Table('mapping',
                    db.Column('type_id', db.Integer, db.ForeignKey('types.id')),
