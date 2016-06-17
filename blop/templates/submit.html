@@ -1,4 +1,152 @@
 {% extends "base.html" %}
 {% block content %}
-	This will be the incident submission page
+
+<!---We need to make dynamically populated dropdown menus-->
+
+	<h1><div style='align-center'>Submit an Event</div></h1>
+	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
+	<form action="/processform" method="post">
+		<div id='dynamicSubtype'>
+			<label for="incident type">Incident Code</label><br>
+			<select id="incident dropdown" name="incident dropdown">
+				<option value="0">Select a Code</option>
+				<option value="1">Code 1</option>
+				<option value="2">Code 2</option>
+				<option value="3">Code 3</option>
+				<option value="4">Code 4</option>
+			</select><br>
+		</div>
+		<!--- This is for is we want to add more dropdown menus using a button.
+		This functionality is no longer needed, but the implementation will be
+		left here for future use.-->
+		<div id="add/delete incident">
+			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incident dropdown').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
+		</div>
+		<div id="location">
+			<label for="location">Incident Location</label><br>
+			<select id="location dropdown" name="location dropdown">
+				<option value="0">Select a Location</option>
+				<option value="1">On-Campus</option>
+				<option value="2">Off-Campus</option>
+				<option value="3">Residence Hall</option>
+			</select><br>
+			<select id="sublocation dropdown" name="sublocation dropdown">
+				<option value="30">Select a Sublocation (Optional)</option>
+				<option value="4">Anna Mann</option>
+				<option value="5">Birchwood Apartments</option>
+				<option value="6">Bragdon Hall</option>
+				<option value="7">Canyon House</option>
+				<option value="8">Farm House</option>
+				<option value="9">Garden House</option>
+				<option value="10">Chittick</option>
+				<option value="11">Griffin</option>
+				<option value="12">McKinley</option>
+				<option value="13">Woodbridge</option>
+				<option value="14">Foster</option>
+				<option value="15">Scholz</option>
+				<option value="16">MacNaughton</option>
+				<option value="17">Bidwell</option>
+				<option value="18">Aspen</option>
+				<option value="19">Sequoia</option>
+				<option value="20">Sitka</option>
+				<option value="21">Chinese House</option>
+				<option value="22">French House</option>
+				<option value="23">German House</option>
+				<option value="24">Russian House</option>
+				<option value="25">Spanish House</option>
+				<option value="26">Naito</option>
+				<option value="27">Sullivan</option>
+				<option value="28">Old Dorm Block</option>
+				<option value="29">Reed College Apartments</option>
+			</select><br><br>
+		</div>
+		<div"date">
+			<label for="date">Date of Incident</label><br>
+			<select id="month dropdown" name="month dropdown">
+				<option value="0">Select a Month</option>
+				<option value="1">January</option>
+				<option value="2">February</option>
+				<option value="3">March</option>
+				<option value="4">April</option>
+				<option value="5">May</option>
+				<option value="6">June</option>
+				<option value="7">July</option>
+				<option value="8">August</option>
+				<option value="9">September</option>
+				<option value="10">October</option>
+				<option value="11">November</option>
+				<option value="12">December</option>
+			</select>
+			<select id="day dropdown" name="day dropdown">
+				<option value="0">Select a Day</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select><br><br>
+		</div>
+		<div id="time">
+			<label for="time">Time of Incident</label><br>
+			<select id="hour dropdown" name="hour dropdown">
+				<option value="12">12</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+			</select>
+			:
+			<select id="minute dropdown" name="minute dropdown">
+				<option value="00">00</option>
+				<option value="15">15</option>
+				<option value="30">30</option>
+				<option value="45">45</option>
+			</select>
+			<select id="AM/PM dropdown" name="AM/PM dropdown">
+				<option value="0">AM</option>
+				<option value="1">PM</option>
+			</select><br><br>
+		</div>	
+		<div id="summary">
+			<label for="summary">Summary of Incident</label><br>
+			<textarea rows="8" cols="75" placeholder="Enter a summary of the incident here." name="incident summary"></textarea><br><br>
+		</div>
+		<div id="submit">
+			<input type="submit" value="Submit an Incident">
+		</div>
+	</form>
+	
 {% endblock %}
