@@ -8,49 +8,28 @@ class Type(db.Model):
     code = db.Column(db.String(15))
     description = db.Column(db.String(100))
 
-    def __init__(self, id, code, description):
-        self.id = id
+    def __init__(self, code, description):
         self.code = code
         self.description = description
 
     def __repr__(self):
-        return '<Incident Type {}>'.format(self.description)
+        return '<Incident Type {}>'.format(self.code)
 
 
-class GeneralLocation(db.Model):
-    __tablename__ = 'general_locations'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    oncampus = db.Column(db.Boolean())
-    specloc = db.relationship('SpecificLocation', backref='general_location',
-                              lazy='dynamic')
-    incidents = db.relationship('Incident', backref='general_location',
-                                lazy='dynamic')
-
-    def __init__(self, id, name, oncampus):
-        self.id = id
-        self.name = name
-        self.oncampus = oncampus
-
-    def __repr__(self):
-        return '<General Location {}>'.format(self.name)
-
-
-class SpecificLocation(db.Model):
-    __tablename__ = 'specific_locations'
+class Location(db.Model):
+    __tablename__ = 'locations'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    general_location_id = db.Column(db.Integer, db.ForeignKey(
-                                   'general_locations.id'))
-    incidents = db.relationship('Incident', backref='specific_location',
+    general = db.Column(db.Enum("Off Campus", "Outside On Campus",
+                                "Residence Hall", "Other Campus Building",
+                                name="general_enum"))
+    incidents = db.relationship('Incident', backref='location',
                                 lazy='dynamic')
 
-    def __init__(self, id, name, general_location_id):
-        self.id = id
+    def __init__(self, name, general):
         self.name = name
-        self.general_location_id = general_location_id
+        self.general = general
 
     def __repr__(self):
         return '<Specific Location {}>'.format(self.name)
@@ -60,28 +39,22 @@ class Incident(db.Model):
     __tablename__ = 'incidents'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date)
-    time = db.Column(db.Time)
+    datetime = db.Column(db.DateTime)
     summary = db.Column(db.String(500))
-    type_mapping = db.relationship('Type', secondary='mapping',
-                                   backref=db.backref('incident',
-                                                      lazy='dynamic'))
-    general_location_id = db.Column(db.Integer, db.ForeignKey(
-                                    'general_locations.id'))
-    specific_location_id = db.Column(db.Integer, db.ForeignKey(
-                                    'specific_locations.id'))
+    types = db.relationship('Type', secondary='mapping',
+                            backref=db.backref('incident',
+                                               lazy='dynamic'))
+    location_id = db.Column(db.Integer, db.ForeignKey(
+                                    'locations.id'))
 
-    def __init__(self, id, date, time, summary, type_id, general_location_id,
-                 specific_location_id):
-        self.id = id
-        self.date = date
-        self.time = time
+    def __init__(self, datetime, summary, types, location):
+        self.datetime = datetime
         self.summary = summary
-        self.general_location_id = general_location_id
-        self.specific_location_id = specific_location_id
+        self.location = location
+        self.types = types
 
     def __repr__(self):
-        return '<incident {}>'.format(self.id)
+        return '<incident {}>'.format(self.datetime)
 
 mapping = db.Table('mapping',
                    db.Column('type_id', db.Integer, db.ForeignKey('types.id')),
