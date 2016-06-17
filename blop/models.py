@@ -47,10 +47,10 @@ class Incident(db.Model):
     location_id = db.Column(db.Integer, db.ForeignKey(
                                     'locations.id'))
 
-    def __init__(self, datetime, summary, location_id, types):
+    def __init__(self, datetime, summary, types, location):
         self.datetime = datetime
         self.summary = summary
-        self.location_id = location_id
+        self.location = location
         self.types = types
 
     def __repr__(self):

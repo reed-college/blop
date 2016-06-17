@@ -39,5 +39,22 @@ def type_seed():
             db.session.commit()
 
 
+@manager.command
+def add_fake_incidents():
+
+    models.Incident.query.delete()
+
+    # insert function to add fake incidents
+    # location = location = models.Location.query.filter(models.Location.name == "Foster").first()
+    # types = [models.Type.query.filter(models.Type.code == "UAA").first(), models.Type.query.filter(models.Type.code == "THEB").first(), models.Type.query.filter(models.Type.code == "HARA").first()]
+    # incident = models.Incident(
+    #                            datetime = datetime.datetime(2016, 8, 13, 19, 00)
+    #                            summary = "practice event"
+    #                            types = types
+    #                            location = location
+    # )
+
+
+
 if __name__ == '__main__':
     manager.run()
