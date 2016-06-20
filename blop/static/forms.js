@@ -22,6 +22,10 @@ function subtype(divName, eventType){
 	document.getElementById(divName).appendChild(newtype)
 }
 
+/*
+
+WIP Remove Dropdown function no longer used
+*/
 function removeElement()  {
 	divNum = document.getElementById(divIds.toString());
 	console.log(divNum);
