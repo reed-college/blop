@@ -38,8 +38,13 @@ def search():
 def processform():
 	#This is for testing.
 	#Put the database interactions for the form here.
-	incident_code=request.form['incident dropdown']
-	return "The incident type is " + str(incident_code)
+	#incident_code=request.form['incident dropdown']
+	f=request.form
+	codelist=[]
+	for key in f.keys():
+		for value in f.getlist(key):
+			codelist.append(value)
+	return "Incident type(s):  " + str(codelist)
 
 
 if __name__ == '__main__':
