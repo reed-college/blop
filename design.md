@@ -33,11 +33,11 @@ De-activate and re-activate your virtual environment, then run `echo $PYTHONPATH
 
 Next, you need to set up the database. You must have postgres running on your machine.
 Run `psql`
-In the shell (is this a shell? idk) run `create database blop;` and then `\l` - make sure `blop` is one of the listed databases, then run `\q` to quit.
+In the shell (is this a shell? idk) run `create database blop;` and then `\l` - make sure `blop` is one of the listed databases. Next you need to create an enum type -- for the column in the database containing an enum (a list of acceptable strings). Run `CREATE TYPE general_enum as ENUM ('Off Campus', 'Outside On Campus', 'Residence Hall', 'Other Campus Building');`. Then run `\q` to quit.
 
-Next, from the root folder of blop, run `python scripts/manage.py db init`
-Then `python scripts/manage.py db migrate`
-then `python scripts/manage.py db upgrade`
+Next, from the root folder of blop, run `python scripts/manage.py db upgrade`
+
+Then to seed the database with types and locations, run `python scripts/manage.py loc_seed` (locations) and `python scripts/manage.py type_seed` (types)
 
 Aaaaand we should be good to go!
 
@@ -45,7 +45,7 @@ Aaaaand we should be good to go!
 
 
 
-
+_________________________________________________________________________
 
 
 
@@ -147,58 +147,7 @@ Sorting capabilities:
 	-looking at x type of incident overlayed with academic calendar (when do SA reports tend to happen most, etc.)?
 
 
-Non-Coding things to do:
-	talk to Dyana re: Cleary reporting
-	talk to Nano, to confirm the above/make changes if necessary
-	Email CSOs requesting location & incident codes
-	Email CSOs and CUS re: figuring out how to export data from the ARMS database
 
-
-The following gives the structure for the app. You can see this if you `brew install tree` and then go into the root folder `/blop` and type `tree`
-
-blop
-├── LICENSE
-├── README.md
-├── app
-│   ├── __init__.py
-│   ├── analytics
-│   ├── auth
-│   │   ├── __init__.py
-│   │   ├── forms.py
-│   │   ├── models.py
-│   │   └── views.py
-│   ├── blotter
-│   │   ├── __init__.py
-│   │   ├── forms.py
-│   │   ├── models.py
-│   │   └── views.py
-│   ├── map
-│   │   ├── __init__.py
-│   │   ├── forms.py
-│   │   ├── models.py
-│   │   └── views.py
-│   ├── search
-│   │   ├── __init__.py
-│   │   ├── forms.py
-│   │   ├── models.py
-│   │   └── views.py
-│   ├── static
-│   └── templates
-│       ├── 404.html
-│       ├── analytics
-│       ├── auth
-│       │   └── signin.html
-│       ├── base.html
-│       ├── blotter
-│       │   ├── blotter.html
-│       │   └── submit.html
-│       ├── map
-│       │   └── map.html
-│       └── search
-│           └── search.html
-├── config.py
-├── design.md
-└── requirements.txt
 
 
 

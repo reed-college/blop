@@ -6,33 +6,34 @@ app = Flask(__name__)
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = db.db_url
 
-from blop import models
-
 db = SQLAlchemy(app)
+
 
 @app.route('/login/')
 def login():
-	return render_template('signin.html')
+    return render_template('signin.html')
+
 
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
-
     types = models.Type.query.all()
     print(types)
     return render_template('submit.html', types=types)
 
 @app.route('/blotter')
 def blotter():
-	return render_template('blotter.html')
+    return render_template('blotter.html')
+
 
 @app.route('/')
 @app.route('/map')
 def maps():
-	return render_template('map.html')
+    return render_template('map.html')
+
 
 @app.route('/search/')
 def search():
-	return render_template('search.html')
+    return render_template('search.html')
 
 @app.route('/processform', methods=['GET', 'POST'])
 def processform():
@@ -48,4 +49,4 @@ def processform():
 
 
 if __name__ == '__main__':
-	app.run()
+    app.run()
