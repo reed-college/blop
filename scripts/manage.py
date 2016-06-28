@@ -65,23 +65,24 @@ def add_fake_incidents():
     db.session.add(incident)
     db.session.commit()
 
-    location = location = models.Location.query.filter(models.Location.name ==
-                                                       "Chittick").first()
-    types = [models.Type.query.filter(models.Type.code == "UNLD").first(),
+    location = models.Location.query.filter(models.Location.name ==
+                                            "Chittick").first()
+    types = [models.Type.query.filter(models.Type.code == "BOM").first(),
              models.Type.query.filter(models.Type.code == "AODMJ").first()]
 
-    summary = "practice event in chittick-dorm unlock, marijuana AOD"
+    summary = "practice event in chittick-bomb threat, marijuana AOD"
     incident = models.Incident(
                                 datetime=datetime.datetime(2016, 4, 25, 6, 23),
                                 summary=summary,
                                 types=types,
                                 location=location
     )
+    print(incident.datetime, incident.types, incident.summary, incident.location)
     db.session.add(incident)
     db.session.commit()
 
-    location = location = models.Location.query.filter(models.Location.name ==
-                                                       "Eliot Hall").first()
+    location = models.Location.query.filter(models.Location.name ==
+                                            "Eliot Hall").first()
     types = [models.Type.query.filter(models.Type.code == "ALF").first(),
              models.Type.query.filter(models.Type.code == "DIS").first()]
 
