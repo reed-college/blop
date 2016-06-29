@@ -2,8 +2,11 @@
 {% block content %}
 
 	<h1><div style='align-center'>Search</div></h1>
+	<!-- The file with the Javascript magic that is being invoked
+	here is in the Static folder.  That is what this tag says. -->
 	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
 	<form action="/processform" method="post">
+		<!-- Just your average date/time stuff.  Select tags, yay! -->
 		<div id="startdate">
 			<label for="date">Start Date</label><br>
 			<select id="monthdropdown" name="month dropdown">
@@ -164,6 +167,8 @@
 				<option value="1">PM</option>
 			</select><br><br>
 		</div>
+		<!-- This next bit will be dynamically added from the database
+		later, and will be condensed to one dropdown menu, iirc. -->
 		<div id="location">
 			<label for="location">Incident Location</label><br>
 			<select id="location dropdown" name="location dropdown">
@@ -202,6 +207,19 @@
 				<option value="29">Reed College Apartments</option>
 			</select><br><br>
 		</div>
+		<!--
+		Okay, now for some hocus pocus.
+
+		The first bit here is using Jinja to loop over the list that we
+		passed from app.py (take a look under the /submit part).  For
+		each item there, we use the id as the returned value on form
+		submission, and the code as the display name.
+
+		The next div has two buttons.  Button 1 invokes the "subtype"
+		function in forms.js (located in the Static folder), and button 2
+		calls the "removeElement" function.  See that file's comments for
+		an attempt at explaining how those work.
+		-->
 		<div id='dynamicSubtype'>
 			<label for="incident type">Incident Type</label><br>
 			<select id="incidentdropdown" name="incidents[]">
@@ -214,6 +232,7 @@
 		<div id="add/delete incident">
 			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidentdropdown').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
 		</div>
+		<!-- And this is just a text box and a button.  Boring. -->
 		<div id="textsearch">
 			<label for="textsearch">Keywords</label><br>
 			<textarea cols="30" rows="5" placeholder="Enter any search keywords here." name="search textarea"></textarea><br><br>
