@@ -8,6 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = db.db_url
 
 db = SQLAlchemy(app)
 
+from blop import models
 
 @app.route('/login/')
 def login():
@@ -16,8 +17,7 @@ def login():
 
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
-    types = models.Type.query.all()
-    print(types)
+    types = db.session.query(models.Type).all()
     return render_template('submit.html', types=types)
 
 @app.route('/blotter')
@@ -33,19 +33,20 @@ def maps():
 
 @app.route('/search/')
 def search():
-    return render_template('search.html')
+    types = db.session.query(models.Type).all()
+    return render_template('search.html', types=types)
 
 @app.route('/processform', methods=['GET', 'POST'])
 def processform():
-	#This is for testing.
-	#Put the database interactions for the form here.
-	#incident_code=request.form['incident dropdown']
-	f=request.form
-	codelist=[]
-	for key in f.keys():
-		for value in f.getlist(key):
-			codelist.append(value)
-	return "Incident type(s):  " + str(codelist)
+    #This is for testing.
+    #Put the database interactions for the form here.
+    #incident_code=request.form['incident dropdown']
+    f=request.form
+    codelist=[]
+    for key in f.keys():
+        for value in f.getlist(key):
+            codelist.append(value)
+    return "The form spat out:  " + str(codelist)
 
 
 if __name__ == '__main__':

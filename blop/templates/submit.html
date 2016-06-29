@@ -1,22 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!---We need to make dynamically populated dropdown menus-->
-
 	<h1><div style='align-center'>Submit an Event</div></h1>
 	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
 	<form action="/processform" method="post">
 		<div id='dynamicSubtype'>
 			<label for="incident type">Incident Code</label><br>
-			<select id="incident dropdown" name="incident dropdown" onload="populate()">
-				<option value="0">Select an Incident Type</option>
+			<select id="incidentdropdown" name="incidents[]">
+				<option value="0">Select an Incident Code</option>
+				{% for type in types %}
+				<option value={{ type.id }}>{{ type.code }}</option>
+				{% endfor %}
 			</select><br>
 		</div>
-		<!--- This is for is we want to add more dropdown menus using a button.
-		This functionality is no longer needed, but the implementation will be
-		left here for future use.-->
 		<div id="add/delete incident">
-			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incident dropdown').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
+			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidentdropdown').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
 		</div>
 		<div id="location">
 			<label for="location">Incident Location</label><br>
@@ -56,7 +54,7 @@
 				<option value="29">Reed College Apartments</option>
 			</select><br><br>
 		</div>
-		<div"date">
+		<div id="date">
 			<label for="date">Date of Incident</label><br>
 			<select id="month dropdown" name="month dropdown">
 				<option value="0">Select a Month</option>

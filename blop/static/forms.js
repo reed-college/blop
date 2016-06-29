@@ -16,7 +16,8 @@ function subtype(divName, eventType){
 		default:  //Builds the generic menu
 			var newtypeid = newtype.getAttribute('id')
 			console.log(newtypeid)
-			newtype.innerHTML = '<select name="incident dropdown"><option value="0">Select a Code</option><option value="1">Code 1</option><option value="2">Code 2</option><option value="3">Code 3</option><option value="4">Code 4</option></select>' //Make this dynamic later
+			// newtype.innerHTML = '<select name="incidents[]"><option value="0">Select an Incident Code</option>{% for type in types %}<option value={{ type.id }}>{{ type.code }}</option>{% endfor %}</select><br>'
+			newtype.innerHTML = '<select name="incidents[]">' + document.getElementById("incidentdropdown").innerHTML + "</select>"  //Remember name=x[]
 			break;
 	}
 	document.getElementById(divName).appendChild(newtype)
@@ -30,9 +31,10 @@ function removeElement()  {
 	d.removeChild(divNum);
 }
 
-function populate(types)  {
+/*function populate(types)  {
+	console.log(types)
 	var dropDown = document.getElementById("incident type")
 	for (var i = 0; i < types.length; i++)  {
 		dropDown[dropDown.length] = new Option(types[i], types[i])
 	}
-}
+}*/

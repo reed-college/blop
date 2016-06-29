@@ -1,4 +1,224 @@
 {% extends "base.html" %}
 {% block content %}
-	This will be the search page.
+
+	<h1><div style='align-center'>Submit an Event</div></h1>
+	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
+	<form action="/processform" method="post">
+		<div id="startdate">
+			<label for="date">Start Date</label><br>
+			<select id="monthdropdown" name="month dropdown">
+				<option value="0">Select a Month</option>
+				<option value="1">January</option>
+				<option value="2">February</option>
+				<option value="3">March</option>
+				<option value="4">April</option>
+				<option value="5">May</option>
+				<option value="6">June</option>
+				<option value="7">July</option>
+				<option value="8">August</option>
+				<option value="9">September</option>
+				<option value="10">October</option>
+				<option value="11">November</option>
+				<option value="12">December</option>
+			</select>
+			<select id="daydropdown" name="day dropdown">
+				<option value="0">Select a Day</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select><br><br>
+		</div>
+		<div id="enddate">
+			<label for="date">End Date</label><br>
+			<select id="monthdropdown2" name="month dropdown">
+				<option value="0">Select a Month</option>
+				<option value="1">January</option>
+				<option value="2">February</option>
+				<option value="3">March</option>
+				<option value="4">April</option>
+				<option value="5">May</option>
+				<option value="6">June</option>
+				<option value="7">July</option>
+				<option value="8">August</option>
+				<option value="9">September</option>
+				<option value="10">October</option>
+				<option value="11">November</option>
+				<option value="12">December</option>
+			</select>
+			<select id="daydropdown2" name="day dropdown">
+				<option value="0">Select a Day</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select><br><br>
+		</div>
+		<div id="starttime">
+			<label for="time">Start Time</label><br>
+			<select id="hourdropdown1" name="hourdropdown">
+				<option value="12">12</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+			</select>
+			:
+			<select id="minutedropdown1" name="minutedropdown">
+				<option value="00">00</option>
+				<option value="15">15</option>
+				<option value="30">30</option>
+				<option value="45">45</option>
+			</select>
+			<select id="AM/PMdropdown1" name="AM/PMdropdown">
+				<option value="0">AM</option>
+				<option value="1">PM</option>
+			</select><br><br>
+		</div>
+		<div id="endtime">
+			<label for="time">End Time</label><br>
+			<select id="hourdropdown2" name="hourdropdown">
+				<option value="12">12</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+			</select>
+			:
+			<select id="minutedropdown2" name="minutedropdown">
+				<option value="00">00</option>
+				<option value="15">15</option>
+				<option value="30">30</option>
+				<option value="45">45</option>
+			</select>
+			<select id="AM/PMdropdown2" name="AM/PMdropdown">
+				<option value="0">AM</option>
+				<option value="1">PM</option>
+			</select><br><br>
+		</div>
+		<div id="location">
+			<label for="location">Incident Location</label><br>
+			<select id="location dropdown" name="location dropdown">
+				<option value="0">Select a Location</option>
+				<option value="1">On-Campus</option>
+				<option value="2">Off-Campus</option>
+				<option value="3">Residence Hall</option>
+			</select><br>
+			<select id="sublocation dropdown" name="sublocation dropdown">
+				<option value="30">Select a Sublocation (Optional)</option>
+				<option value="4">Anna Mann</option>
+				<option value="5">Birchwood Apartments</option>
+				<option value="6">Bragdon Hall</option>
+				<option value="7">Canyon House</option>
+				<option value="8">Farm House</option>
+				<option value="9">Garden House</option>
+				<option value="10">Chittick</option>
+				<option value="11">Griffin</option>
+				<option value="12">McKinley</option>
+				<option value="13">Woodbridge</option>
+				<option value="14">Foster</option>
+				<option value="15">Scholz</option>
+				<option value="16">MacNaughton</option>
+				<option value="17">Bidwell</option>
+				<option value="18">Aspen</option>
+				<option value="19">Sequoia</option>
+				<option value="20">Sitka</option>
+				<option value="21">Chinese House</option>
+				<option value="22">French House</option>
+				<option value="23">German House</option>
+				<option value="24">Russian House</option>
+				<option value="25">Spanish House</option>
+				<option value="26">Naito</option>
+				<option value="27">Sullivan</option>
+				<option value="28">Old Dorm Block</option>
+				<option value="29">Reed College Apartments</option>
+			</select><br><br>
+		</div>
+		<div id='dynamicSubtype'>
+			<label for="incident type">Incident Type</label><br>
+			<select id="incidentdropdown" name="incidents[]">
+				<option value="0">Select an Incident Code</option>
+				{% for type in types %}
+				<option value={{ type.id }}>{{ type.code }}</option>
+				{% endfor %}
+			</select><br>
+		</div>
+		<div id="add/delete incident">
+			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidentdropdown').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
+		</div>
+		<div id="textsearch">
+			<label for="textsearch">Keywords</label><br>
+			<textarea cols="30" rows="5" placeholder="Enter any search keywords here." name="search textarea"></textarea><br><br>
+		<div id="submit">
+			<input type="submit" value="Search">
+		</div>
+	</form>	
 {% endblock %}
