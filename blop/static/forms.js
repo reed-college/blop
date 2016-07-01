@@ -1,4 +1,4 @@
-var divIds = 1
+var divIds = 1;
 function subtype(divName, eventType){
 	/* 
 	So, these first few lines are to give each new menu that we create a
@@ -9,10 +9,10 @@ function subtype(divName, eventType){
 	When we call the function, we increment divIds to create a new id.  Then,
 	we set its id to equal our new id value, then log it for dev purposes.
 	 */
-	divIds++
-	var newtype = document.createElement("div")
-	newtype.setAttribute("id", divIds.toString())
-	console.log(divIds)
+	divIds++;
+	var newtype = document.createElement("div");
+	newtype.setAttribute("id", divIds.toString());
+	console.log(divIds);
 	switch(eventType)  { //We decided not to change the menu that appears based on the current selection, but the functionality to do so has been left here.
 		//To change this based on the current selection, put the selection's value (NOT its name) into a "case" block, then change the options as desired.
 		/*case '2': //Builds an AOD-specific menu
@@ -24,7 +24,7 @@ function subtype(divName, eventType){
 		default:  //Builds the generic menu
 			/*
 			So, this is a litte bit hard to explain.  What we are doing here
-			is literally just changing the HTML text of our original document
+			is literally changing the HTML text of our original document
 			using this "innerHTML" thing.  What this does is that it just
 			shoves whatever we set it equal to into the HTML of our new thing.
 			This means that our database entries now show up in the dynamically
@@ -39,13 +39,13 @@ function subtype(divName, eventType){
 			This is confusing.  Stare at this for a while, and come find me if
 			this makes no sense.
 			*/
-			var newtypeid = newtype.getAttribute('id')
-			console.log(newtypeid)
-			newtype.innerHTML = '<select name="incidents[]">' + document.getElementById("incidentdropdown").innerHTML + "</select>"  //Remember name=x[]
+			var newtypeid = newtype.getAttribute('id');
+			console.log(newtypeid);
+			newtype.innerHTML = '<select name="incidents">' + document.getElementById("incidents").innerHTML + "</select>";  //Remember name=x[]
 			break;
 	}
 	// We are done, put it at the end of our block!
-	document.getElementById(divName).appendChild(newtype)
+	document.getElementById(divName).appendChild(newtype);
 }
 
 function removeElement()  {

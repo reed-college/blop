@@ -45,7 +45,7 @@ def processform():
     codelist=[]
     for key in f.keys():
         for value in f.getlist(key):
-            codelist.append(value)
+            codelist.append(key + " => " + value)
     return "The form spat out:  " + str(codelist)
 
 

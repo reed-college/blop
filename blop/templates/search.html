@@ -9,7 +9,7 @@
 		<!-- Just your average date/time stuff.  Select tags, yay! -->
 		<div id="startdate">
 			<label for="date">Start Date</label><br>
-			<select id="monthdropdown" name="month dropdown">
+			<select id="start_month" name="start_month">
 				<option value="0">Select a Month</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
@@ -24,7 +24,7 @@
 				<option value="11">November</option>
 				<option value="12">December</option>
 			</select>
-			<select id="daydropdown" name="day dropdown">
+			<select id="start_day" name="start_day">
 				<option value="0">Select a Day</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -61,7 +61,7 @@
 		</div>
 		<div id="enddate">
 			<label for="date">End Date</label><br>
-			<select id="monthdropdown2" name="month dropdown">
+			<select id="end_month" name="end_month">
 				<option value="0">Select a Month</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
@@ -76,7 +76,7 @@
 				<option value="11">November</option>
 				<option value="12">December</option>
 			</select>
-			<select id="daydropdown2" name="day dropdown">
+			<select id="end_day" name="end_day">
 				<option value="0">Select a Day</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -113,7 +113,7 @@
 		</div>
 		<div id="starttime">
 			<label for="time">Start Time</label><br>
-			<select id="hourdropdown1" name="hourdropdown">
+			<select id="start_hour" name="start_hour">
 				<option value="12">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -128,20 +128,20 @@
 				<option value="11">11</option>
 			</select>
 			:
-			<select id="minutedropdown1" name="minutedropdown">
+			<select id="start_minute" name="start_minute">
 				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
 			</select>
-			<select id="AM/PMdropdown1" name="AM/PMdropdown">
-				<option value="0">AM</option>
-				<option value="1">PM</option>
+			<select id="ampm_start" name="ampm_start">
+				<option value="am">AM</option>
+				<option value="pm">PM</option>
 			</select><br><br>
 		</div>
 		<div id="endtime">
 			<label for="time">End Time</label><br>
-			<select id="hourdropdown2" name="hourdropdown">
+			<select id="end_hour" name="end_hour">
 				<option value="12">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -156,15 +156,15 @@
 				<option value="11">11</option>
 			</select>
 			:
-			<select id="minutedropdown2" name="minutedropdown">
+			<select id="end_minute" name="end_minute">
 				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
 			</select>
-			<select id="AM/PMdropdown2" name="AM/PMdropdown">
-				<option value="0">AM</option>
-				<option value="1">PM</option>
+			<select id="ampm_end" name="ampm_end">
+				<option value="am">AM</option>
+				<option value="pm">PM</option>
 			</select><br><br>
 		</div>
 		<!-- This next bit will be dynamically added from the database
@@ -172,13 +172,13 @@
 		<div id="location">
 			<label for="location">Incident Location</label><br>
 			<select id="location dropdown" name="location dropdown">
-				<option value="0">Select a Location</option>
+				<option value="PrimaryLocation">Select a Location</option>
 				<option value="1">On-Campus</option>
 				<option value="2">Off-Campus</option>
 				<option value="3">Residence Hall</option>
 			</select><br>
 			<select id="sublocation dropdown" name="sublocation dropdown">
-				<option value="30">Select a Sublocation (Optional)</option>
+				<option value="Sublocation">Select a Sublocation (Optional)</option>
 				<option value="4">Anna Mann</option>
 				<option value="5">Birchwood Apartments</option>
 				<option value="6">Bragdon Hall</option>
@@ -220,9 +220,13 @@
 		calls the "removeElement" function.  See that file's comments for
 		an attempt at explaining how those work.
 		-->
-		<div id='dynamicSubtype'>
+		<div id='and/or'>
 			<label for="incident type">Incident Type</label><br>
-			<select id="incidentdropdown" name="incidents[]">
+			<input type="radio" name="and_or" value="and" checked>AND
+			<input type="radio" name="and_or" value="or">OR<br>
+		</div>
+		<div id='dynamicSubtype'>
+			<select id="incidents" name="incidents">
 				<option value="0">Select an Incident Code</option>
 				{% for type in types %}
 				<option value={{ type.id }}>{{ type.code }}</option>
@@ -230,11 +234,11 @@
 			</select><br>
 		</div>
 		<div id="add/delete incident">
-			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidentdropdown').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
+			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
 		</div>
 		<!-- And this is just a text box and a button.  Boring. -->
 		<div id="textsearch">
-			<label for="textsearch">Keywords</label><br>
+			<label for="keywords">Keywords</label><br>
 			<textarea cols="30" rows="5" placeholder="Enter any search keywords here." name="search textarea"></textarea><br><br>
 		<div id="submit">
 			<input type="submit" value="Search">
