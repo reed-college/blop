@@ -42,7 +42,9 @@ class Incident(db.Model):
     datetime = db.Column(db.DateTime)
     summary = db.Column(db.String(500))
     types = db.relationship('Type', secondary='mapping',
+                            cascade='all',
                             backref=db.backref('incident',
+                                               cascade="all",
                                                lazy='dynamic'))
     location_id = db.Column(db.Integer, db.ForeignKey(
                                     'locations.id'))
@@ -57,7 +59,8 @@ class Incident(db.Model):
         return '<incident {}>'.format(self.datetime)
 
 mapping = db.Table('mapping',
-                   db.Column('type_id', db.Integer, db.ForeignKey('types.id')),
+                   db.Column('type_id', db.Integer, db.ForeignKey('types.id',
+                             ondelete='cascade')),
                    db.Column('incident_id', db.Integer,
-                             db.ForeignKey('incidents.id'))
+                             db.ForeignKey('incidents.id', ondelete='cascade'))
                    )
