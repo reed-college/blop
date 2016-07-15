@@ -17,8 +17,9 @@ def login():
 
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
-    types = db.session.query(models.Type).all()
-    return render_template('submit.html', types=types)
+    types = db.session.query(models.Type).order_by(models.Type.code).all()
+    locations = db.session.query(models.Location).order_by(models.Location.name).all()
+    return render_template('submit.html', types=types, locations=locations)
 
 @app.route('/blotter')
 def blotter():
