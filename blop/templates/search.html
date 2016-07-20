@@ -170,13 +170,13 @@
 		<!-- This next bit will be dynamically added from the database
 		later, and will be condensed to one dropdown menu, iirc. -->
 		<div id="location">
-			<label for="location">Incident Location</label><br>
-			<select id="location dropdown" name="location dropdown">
-				<option value="PrimaryLocation">Select a Location</option>
-				<option value="1">On-Campus</option>
-				<option value="2">Off-Campus</option>
-				<option value="3">Residence Hall</option>
-			</select><br>
+			Location of Incident<br>
+			<select id="location" name="location">
+				<option value="0">Select a Location</option>
+				{% for loc in locations %}
+				<option value={{ loc.id }}>{{ loc.name }}</option>
+				{% endfor %}
+			</select><br><br>
 		</div>
 		<!--
 		Okay, now for some hocus pocus.

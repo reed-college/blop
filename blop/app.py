@@ -34,8 +34,9 @@ def maps():
 
 @app.route('/search/')
 def search():
-    types = db.session.query(models.Type).all()
-    return render_template('search.html', types=types)
+    types = db.session.query(models.Type).order_by(models.Type.code).all()
+    locations = db.session.query(models.Location).order_by(models.Location.name).all()
+    return render_template('search.html', types=types, locations=locations)
 
 @app.route('/processform', methods=['GET', 'POST'])
 def processform():
@@ -43,11 +44,11 @@ def processform():
     #Put the database interactions for the form here.
     #incident_code=request.form['incident dropdown']
     f=request.form
-    codelist=[]
-    for key in f.keys():
-        for value in f.getlist(key):
-            codelist.append(key + " => " + value)
-    return "The form spat out:  " + str(codelist)
+    # codelist=[]
+    # for key in f.keys():
+    #     for value in f.getlist(key):
+    #         codelist.append(key + " => " + value)
+    return "The form spat out:  " + str(f)
 
 
 if __name__ == '__main__':
