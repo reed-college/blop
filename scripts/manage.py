@@ -12,15 +12,13 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-
 @manager.command
 def loc_seed():
 
     with open('location_codes.csv', 'r') as csvfile:
         loccodereader = csv.DictReader(csvfile, delimiter=',')
         for row in loccodereader:
-            loccode = models.Location(name=row['name'], general=row[
-                                              'general'])
+            loccode = models.Location(name=row['name'])
             db.session.add(loccode)
             db.session.commit()
 
@@ -61,7 +59,7 @@ def add_fake_incidents(): # adds 100 fake incidents to the database for dev
         for line in f:
             word_list.append(line.strip())
 
-    for _ in range(100): #sets up the following to happen 100 times
+    for _ in range(1500): #sets up the following to happen 100 times
         Typequery = db.session.query(models.Type) #queries Type table
         rowCount = int(Typequery.count()) # counts rows in type table
         typeOne = Typequery.offset(int(rowCount*random.random())).first()
