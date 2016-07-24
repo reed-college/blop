@@ -1,5 +1,11 @@
+from flask_sqlalchemy import SQLAlchemy, BaseQuery
+from sqlalchemy_searchable import SearchQueryMixin
+from sqlalchemy_utils.types import TSVectorType
+from sqlalchemy_searchable import make_searchable
+
 from blop.app import db
 
+make_searchable()
 
 class Type(db.Model):
     __tablename__ = 'types'
@@ -21,21 +27,21 @@ class Location(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    general = db.Column(db.Enum("Off Campus", "Outside On Campus",
-                                "Residence Hall", "Other Campus Building",
-                                name="general_enum"))
     incidents = db.relationship('Incident', backref='location',
                                 lazy='dynamic')
 
-    def __init__(self, name, general):
+    def __init__(self, name):
         self.name = name
-        self.general = general
 
     def __repr__(self):
         return '<Specific Location {}>'.format(self.name)
 
 
+class IncidentQuery(BaseQuery, SearchQueryMixin):
+    pass
+
 class Incident(db.Model):
+    query_class = IncidentQuery
     __tablename__ = 'incidents'
 
     id = db.Column(db.Integer, primary_key=True)

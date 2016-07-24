@@ -9,7 +9,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = db.db_url
 db = SQLAlchemy(app)
 
 from blop import models
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Lauras_Branch
 
 @app.route('/login/')
 def login():
@@ -18,12 +21,18 @@ def login():
 
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
+<<<<<<< HEAD
 
     types = models.Type.query.all()
     locations = models.Location.query.all()
 
     return render_template('submit.html', types=types, locations=locations)
 
+=======
+    types = db.session.query(models.Type).order_by(models.Type.code).all()
+    locations = db.session.query(models.Location).order_by(models.Location.name).all()
+    return render_template('submit.html', types=types, locations=locations)
+>>>>>>> origin/Lauras_Branch
 
 @app.route('/blotter')
 def blotter():
@@ -38,11 +47,14 @@ def maps():
 
 @app.route('/search/')
 def search():
-    return render_template('search.html')
+    types = db.session.query(models.Type).order_by(models.Type.code).all()
+    locations = db.session.query(models.Location).order_by(models.Location.name).all()
+    return render_template('search.html', types=types, locations=locations)
 
 
 @app.route('/processform', methods=['GET', 'POST'])
 def processform():
+<<<<<<< HEAD
     # This is for testing.
     # Put the database interactions for the form here.
     f = request.form
@@ -71,6 +83,17 @@ def processform():
     db.session.commit()
 
     return "The incident type is " + str(incident_code)
+=======
+    #This is for testing.
+    #Put the database interactions for the form here.
+    #incident_code=request.form['incident dropdown']
+    f=request.form
+    # codelist=[]
+    # for key in f.keys():
+    #     for value in f.getlist(key):
+    #         codelist.append(key + " => " + value)
+    return "The form spat out:  " + str(f)
+>>>>>>> origin/Lauras_Branch
 
 
 if __name__ == '__main__':
