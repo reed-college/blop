@@ -5,7 +5,6 @@ function subtype(divName, eventType){
 	unique id.  That way, we can find and delete them later.  "divIds" saves
 	a number than indicates how many boxes we have made, and what the last
 	one's id is.
-
 	When we call the function, we increment divIds to create a new id.  Then,
 	we set its id to equal our new id value, then log it for dev purposes.
 	 */
@@ -29,13 +28,11 @@ function subtype(divName, eventType){
 			shoves whatever we set it equal to into the HTML of our new thing.
 			This means that our database entries now show up in the dynamically
 			created dropdowns.  Yay!
-
 			Do note that, to my understanding, this is interpreted after Jinja
 			does its sweep, so typing in Jinja commands here will not work.
 			Our trick here is copying the Jinja code that has already been
 			interpreted, and so it is being passed through after it has been
 			turned into plain-old-HTML.
-
 			This is confusing.  Stare at this for a while, and come find me if
 			this makes no sense.
 			*/

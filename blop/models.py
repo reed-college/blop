@@ -1,11 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy, BaseQuery
-from sqlalchemy_searchable import SearchQueryMixin
-from sqlalchemy_utils.types import TSVectorType
-from sqlalchemy_searchable import make_searchable
+from flask_sqlalchemy import SQLAlchemy
 
 from blop.app import db
-
-make_searchable()
 
 class Type(db.Model):
     __tablename__ = 'types'
@@ -19,7 +14,7 @@ class Type(db.Model):
         self.description = description
 
     def __repr__(self):
-        return '<Incident Type {}>'.format(self.code)
+        return '{}'.format(self.description)
 
 
 class Location(db.Model):
@@ -36,12 +31,7 @@ class Location(db.Model):
     def __repr__(self):
         return '<Specific Location {}>'.format(self.name)
 
-
-class IncidentQuery(BaseQuery, SearchQueryMixin):
-    pass
-
 class Incident(db.Model):
-    query_class = IncidentQuery
     __tablename__ = 'incidents'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -55,10 +45,10 @@ class Incident(db.Model):
     location_id = db.Column(db.Integer, db.ForeignKey(
                                     'locations.id'))
 
-    def __init__(self, datetime, summary, types, location):
+    def __init__(self, datetime, summary, types, location_id):
         self.datetime = datetime
         self.summary = summary
-        self.location = location
+        self.location_id = location_id
         self.types = types
 
     def __repr__(self):

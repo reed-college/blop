@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block content %}
 
@@ -5,7 +6,7 @@
 	<!-- The file with the Javascript magic that is being invoked
 	here is in the Static folder.  That is what this tag says. -->
 	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
-	<form action="/processform" method="post">
+	<form action="/blottersearch" method="post">
 		<!-- Just your average date/time stuff.  Select tags, yay! -->
 		<div id="startdate">
 			<label for="date">Start Date</label><br>
@@ -57,6 +58,20 @@
 				<option value="29">29</option>
 				<option value="30">30</option>
 				<option value="31">31</option>
+			</select>
+			<select id="start_year" name="start_year">
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
 			</select><br><br>
 		</div>
 		<div id="enddate">
@@ -109,6 +124,20 @@
 				<option value="29">29</option>
 				<option value="30">30</option>
 				<option value="31">31</option>
+			</select>
+			<select id="end_year" name="end_year">
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
 			</select><br><br>
 		</div>
 		<div id="starttime">
@@ -178,14 +207,15 @@
 				{% endfor %}
 			</select><br><br>
 		</div>
+		<div id="add/delete location">
+			<input type="button" value="Add a Location" onClick="subtype('dynamicSubtype', document.getElementById('location').value);"><input type="button" value="Delete a Location" onClick="removeElement()"><br><br>
+		</div>
 		<!--
 		Okay, now for some hocus pocus.
-
 		The first bit here is using Jinja to loop over the list that we
 		passed from app.py (take a look under the /submit part).  For
 		each item there, we use the id as the returned value on form
 		submission, and the code as the display name.
-
 		The next div has two buttons.  Button 1 invokes the "subtype"
 		function in forms.js (located in the Static folder), and button 2
 		calls the "removeElement" function.  See that file's comments for
