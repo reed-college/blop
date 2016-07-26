@@ -6,76 +6,29 @@
 	<form action="/processform" method="post">
 		<div id='dynamicSubtype'>
 			<label for="incident type">Incident Code</label><br>
-<<<<<<< HEAD
-			<select id="incident dropdown" name="incident dropdown">
-				<!--- <option value="0">Select a Code</option>
-				<option value="1">Code 1</option>
-				<option value="2">Code 2</option>
-				<option value="3">Code 3</option>
-				<option value="4">Code 4</option> -->
-=======
 			<select id="incidents" name="incidents">
-				<option value="0">Select an Incident Code</option>
+				<option value="0">Select a Code</option>
 				{% for type in types %}
 				<option value={{ type.id }}>{{ type.code }}</option>
 				{% endfor %}
->>>>>>> origin/Lauras_Branch
 			</select><br>
 		</div>
 		<div id="add/delete incident">
 			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
 		</div>
 		<div id="location">
-<<<<<<< HEAD
-			<label for="location">Incident Location</label><br>
-			<select id="location dropdown" name="location dropdown">
-			<!---	<option value="0">Select a Location</option>
-				<option value="1">On-Campus</option>
-				<option value="2">Off-Campus</option>
-				<option value="3">Residence Hall</option> -->
-			</select><br>
-			<select id="sublocation dropdown" name="sublocation dropdown">
-			<!---	<option value="30">Select a Sublocation (Optional)</option>
-				<option value="4">Anna Mann</option>
-				<option value="5">Birchwood Apartments</option>
-				<option value="6">Bragdon Hall</option>
-				<option value="7">Canyon House</option>
-				<option value="8">Farm House</option>
-				<option value="9">Garden House</option>
-				<option value="10">Chittick</option>
-				<option value="11">Griffin</option>
-				<option value="12">McKinley</option>
-				<option value="13">Woodbridge</option>
-				<option value="14">Foster</option>
-				<option value="15">Scholz</option>
-				<option value="16">MacNaughton</option>
-				<option value="17">Bidwell</option>
-				<option value="18">Aspen</option>
-				<option value="19">Sequoia</option>
-				<option value="20">Sitka</option>
-				<option value="21">Chinese House</option>
-				<option value="22">French House</option>
-				<option value="23">German House</option>
-				<option value="24">Russian House</option>
-				<option value="25">Spanish House</option>
-				<option value="26">Naito</option>
-				<option value="27">Sullivan</option>
-				<option value="28">Old Dorm Block</option>
-				<option value="29">Reed College Apartments</option> -->
-=======
 			Location of Incident<br>
 			<select id="location" name="location">
 				<option value="0">Select a Location</option>
 				{% for loc in locations %}
 				<option value={{ loc.id }}>{{ loc.name }}</option>
 				{% endfor %}
->>>>>>> origin/Lauras_Branch
 			</select><br><br>
 		</div>
 		<div id="date">
 			<label for="date">Date of Incident</label><br>
 			<select id="month dropdown" name="month dropdown">
-			<!---	<option value="0">Select a Month</option>
+				<option value="0">Month</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
 				<option value="3">March</option>
@@ -87,10 +40,10 @@
 				<option value="9">September</option>
 				<option value="10">October</option>
 				<option value="11">November</option>
-				<option value="12">December</option> -->
+				<option value="12">December</option>
 			</select>
 			<select id="day dropdown" name="day dropdown">
-			<!---	<option value="0">Select a Day</option>
+				<option value="0">Day</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -121,13 +74,28 @@
 				<option value="28">28</option>
 				<option value="29">29</option>
 				<option value="30">30</option>
-				<option value="31">31</option> -->
+				<option value="31">31</option>
+			</select>
+			<select id="year dropdown" name="year dropdown">
+				<option value="0000">Year</option>
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
 			</select><br><br>
 		</div>
 		<div id="time">
 			<label for="time">Time of Incident</label><br>
 			<select id="hour dropdown" name="hour dropdown">
-			<!---	<option value="12">12</option>
+				<option value="12">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -138,23 +106,23 @@
 				<option value="8">8</option>
 				<option value="9">9</option>
 				<option value="10">10</option>
-				<option value="11">11</option> -->
+				<option value="11">11</option>
 			</select>
 			:
 			<select id="minute dropdown" name="minute dropdown">
-			<!---	<option value="00">00</option>
+				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
-				<option value="45">45</option> -->
+				<option value="45">45</option>
 			</select>
 			<select id="AM/PM dropdown" name="AM/PM dropdown">
-			<!--	<option value="0">AM</option>
-				<option value="1">PM</option> -->
+				<option value="0">AM</option>
+				<option value="1">PM</option>
 			</select><br><br>
 		</div>	
 		<div id="summary">
 			<label for="summary">Summary of Incident</label><br>
-			<textarea rows="8" cols="75" placeholder="Enter a summary of the incident here." name="incident summary"></textarea><br><br>
+			<textarea id="summary field" rows="8" cols="75" placeholder="Enter a summary of the incident here." name="summary field"></textarea><br><br>
 		</div>
 		<div id="submit">
 			<input type="submit" value="Submit an Incident">

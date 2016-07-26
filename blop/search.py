@@ -1,9 +1,7 @@
 import datetime
-from sqlalchemy import between, and_
 from blop import models
-from sqlalchemy.sql import select, desc
+from sqlalchemy.sql import desc
 from blop.app import db
-from sqlalchemy_searchable import search
 
 def searchfunction(form_object):
     
@@ -91,3 +89,4 @@ def searchfunction(form_object):
         result=list(set(result).intersection(squery))
 
     print(result)
+    
