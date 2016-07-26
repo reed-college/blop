@@ -11,7 +11,7 @@
 		<div id="startdate">
 			<label for="date">Start Date</label><br>
 			<select id="start_month" name="start_month">
-				<option value="0">Select a Month</option>
+				<option value="0">Month</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
 				<option value="3">March</option>
@@ -26,7 +26,7 @@
 				<option value="12">December</option>
 			</select>
 			<select id="start_day" name="start_day">
-				<option value="0">Select a Day</option>
+				<option value="0">Day</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -60,6 +60,7 @@
 				<option value="31">31</option>
 			</select>
 			<select id="start_year" name="start_year">
+				<option value="0000">Year</option>
 				<option value="2005">2005</option>
 				<option value="2006">2006</option>
 				<option value="2007">2007</option>
@@ -77,7 +78,7 @@
 		<div id="enddate">
 			<label for="date">End Date</label><br>
 			<select id="end_month" name="end_month">
-				<option value="0">Select a Month</option>
+				<option value="0">Month</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
 				<option value="3">March</option>
@@ -92,7 +93,7 @@
 				<option value="12">December</option>
 			</select>
 			<select id="end_day" name="end_day">
-				<option value="0">Select a Day</option>
+				<option value="0">Day</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -126,6 +127,7 @@
 				<option value="31">31</option>
 			</select>
 			<select id="end_year" name="end_year">
+				<option value="0000">Year</option>
 				<option value="2005">2005</option>
 				<option value="2006">2006</option>
 				<option value="2007">2007</option>
@@ -143,6 +145,7 @@
 		<div id="starttime">
 			<label for="time">Start Time</label><br>
 			<select id="start_hour" name="start_hour">
+				<option value="12"></option>
 				<option value="12">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -158,12 +161,14 @@
 			</select>
 			:
 			<select id="start_minute" name="start_minute">
+				<option value="00"></option>
 				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
 			</select>
 			<select id="ampm_start" name="ampm_start">
+				<option value="am"></option>
 				<option value="am">AM</option>
 				<option value="pm">PM</option>
 			</select><br><br>
@@ -171,6 +176,7 @@
 		<div id="endtime">
 			<label for="time">End Time</label><br>
 			<select id="end_hour" name="end_hour">
+				<option value="11"></option>
 				<option value="12">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -186,12 +192,14 @@
 			</select>
 			:
 			<select id="end_minute" name="end_minute">
+				<option value="59"></option>
 				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
 			</select>
 			<select id="ampm_end" name="ampm_end">
+				<option value="pm"></option>
 				<option value="am">AM</option>
 				<option value="pm">PM</option>
 			</select><br><br>
@@ -228,14 +236,14 @@
 		</div>
 		<div id='dynamicSubtype'>
 			<select id="incidents" name="incidents">
-				<option value="0">Select an Incident Code</option>
+				<option value="0">Select an Incident Type</option>
 				{% for type in types %}
-				<option value={{ type.id }}>{{ type.code }}</option>
+				<option value={{ type.id }}>{{ type.description }}</option>
 				{% endfor %}
 			</select><br>
 		</div>
 		<div id="add/delete incident">
-			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
+			<input type="button" value="Add an Incident Type" onClick="subtype('dynamicSubtype', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Type" onClick="removeElement()"><br><br>
 		</div>
 		<!-- And this is just a text box and a button.  Boring. -->
 		<div id="textsearch">

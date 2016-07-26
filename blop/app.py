@@ -100,14 +100,37 @@ def blottersearch():
     if request.form['ampm_end'] == 'pm' and endhour != 00:
         endhour = endhour + 12
 
-    startdate= datetime.datetime(int(request.form['start_year']),
-                             int(request.form['start_month']),
-                             int(request.form['start_day']),
+    startyear = int(request.form['start_year'])
+    startmonth = int(request.form['start_month'])
+    startday = int(request.form['start_day'])
+
+    endyear = int(request.form['end_year'])
+    endmonth = int(request.form['end_month'])
+    endday = int(request.form['end_day'])  
+
+    today = datetime.datetime.today()
+
+    if startyear == 0000:
+        startyear = today.year - 1
+    if startmonth == 0:
+        startmonth = today.month
+    if startday == 0:
+        startday = today.day
+    if endyear == 0000:
+        endyear = today.year
+    if endmonth == 0:
+        endmonth = today.month
+    if endday == 0:
+        endday = today.day
+
+    startdate= datetime.datetime(startyear,
+                             startmonth,
+                             startday,
                              0,0)
 
-    enddate= datetime.datetime(int(request.form['end_year']),
-                             int(request.form['end_month']),
-                             int(request.form['end_day']),
+    enddate= datetime.datetime(endyear,
+                             endmonth,
+                             endday,
                              23,59)
 
     starttime=datetime.datetime(2000,1,1,starthour,
@@ -130,18 +153,16 @@ def blottersearch():
                 timefilter.append(q)
 
     result = [val for val in datefilter if val in timefilter]
-    print(result) 
 
-    if request.form['locations']!='0':
-        locs = request.form.getlist('locations',type=int)
+    if request.form['location']!='0':
+        locs = request.form.getlist('location',type=int)
         locationfilter = []
         for l in locs:
             for q in query:
-                if l == q.location.id:
+                if l == q.location_id:
                     locationfilter.append(q)
         result=list(set(result).intersection(locationfilter))
 
-    print(result)
 
     if request.form['incidents']!='0':
         types = request.form.getlist('incidents',type=int)
@@ -166,16 +187,12 @@ def blottersearch():
 
         result=list(set(result).intersection(typefilter))
 
-    print(result)
-
     if request.form['search textarea']!='':
         slist = request.form['search textarea'].split()
         sstring = "|".join(slist)
         summaryfilter = db.session.query(models.Incident).filter(db.func.to_tsvector(models.Incident.summary).match(sstring)).all()
         result=list(set(result).intersection(summaryfilter))
-
-    print(result)
-
+    result = sorted(result, key= lambda incident: incident.datetime, reverse = True)
     return render_template('blottersearch.html', result = result)
 
 if __name__ == '__main__':
