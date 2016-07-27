@@ -1,0 +1,4 @@
+#reed_buildings > path:hover {
+  cursor: pointer;
+  fill: #000000;
+}
