@@ -2,10 +2,33 @@
 	<head>
 
         <style type="text/css">
-          #reed_buildings > path:hover {
-          cursor: pointer;
-          fill: #000000;
-        }
+            #reed_buildings > path:hover {
+                cursor: pointer;
+                fill: #000000;
+            }
+
+            /* a centered single column container for the rest of the page content */
+            .container {
+                width: 800px;
+                margin: 0 auto;
+            }
+
+            /* a container for the svg object, so we can add borders, padding, etc */
+            div#blop-map {
+                border: 1px solid #ccc;
+            }
+
+            /* an element representing an info pane for the current selection */
+            div#blop-info-pane {
+                margin-top: 1em;
+                border: 1px solid #ccc;
+            }
+
+            /* the svg object itself */
+                object#blop-svg {
+                width: 100%;
+            }
+
         </style>
 
 		<h1>CSO Blotter</h1>
