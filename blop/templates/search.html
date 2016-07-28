@@ -169,14 +169,17 @@
 		</div>
 		<!-- This next bit will be dynamically added from the database
 		later, and will be condensed to one dropdown menu, iirc. -->
-		<div id="location">
+		<div id="location" name='location'>
 			Location of Incident<br>
-			<select id="location" name="location">
+			<select id="dynamicLocation" name="dynamicLocation">
 				<option value="0">Select a Location</option>
 				{% for loc in locations %}
 				<option value={{ loc.id }}>{{ loc.name }}</option>
 				{% endfor %}
-			</select><br><br>
+			</select><br>
+		</div>
+		<div id="add/delete location">
+			<input type="button" value="Add a Location Code" onClick="addLocation('dynamicLocation', document.getElementById('location').value);"><input type="button" value="Delete an Incident Code" onClick="removeLocation()"><br><br>
 		</div>
 		<!--
 		Okay, now for some hocus pocus.
@@ -196,7 +199,7 @@
 			<input type="radio" name="and_or" value="and" checked>AND
 			<input type="radio" name="and_or" value="or">OR<br>
 		</div>
-		<div id='dynamicSubtype'>
+		<div id='dynamicType'>
 			<select id="incidents" name="incidents">
 				<option value="0">Select an Incident Code</option>
 				{% for type in types %}
@@ -205,7 +208,7 @@
 			</select><br>
 		</div>
 		<div id="add/delete incident">
-			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
+			<input type="button" value="Add an Incident Code" onClick="addType('dynamicType', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeType()"><br><br>
 		</div>
 		<!-- And this is just a text box and a button.  Boring. -->
 		<div id="textsearch">
