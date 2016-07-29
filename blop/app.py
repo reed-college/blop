@@ -35,7 +35,7 @@ def maps():
 
 @app.route('/search/')
 def search():
-    types = db.session.query(models.Type).order_by(models.Type.code).all()
+    types = db.session.query(models.Type).order_by(models.Type.description).all()
     locations = db.session.query(models.Location).order_by(models.Location.name).all()
     return render_template('search.html', types=types, locations=locations)
 

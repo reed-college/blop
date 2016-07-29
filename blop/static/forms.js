@@ -1,17 +1,19 @@
-var divIds = 1;
-function subtype(divName, eventType){
+var typeIds = 1;
+var locationIds = 1;
+function addType(divName, eventType){
 	/* 
 	So, these first few lines are to give each new menu that we create a
-	unique id.  That way, we can find and delete them later.  "divIds" saves
+	unique id.  That way, we can find and delete them later.  "typeIds" saves
 	a number than indicates how many boxes we have made, and what the last
 	one's id is.
-	When we call the function, we increment divIds to create a new id.  Then,
+
+	When we call the function, we increment typeIds to create a new id.  Then,
 	we set its id to equal our new id value, then log it for dev purposes.
 	 */
-	divIds++;
+	typeIds++;
 	var newtype = document.createElement("div");
-	newtype.setAttribute("id", divIds.toString());
-	console.log(divIds);
+	newtype.setAttribute("id", typeIds.toString() + "type");
+	console.log(typeIds);
 	switch(eventType)  { //We decided not to change the menu that appears based on the current selection, but the functionality to do so has been left here.
 		//To change this based on the current selection, put the selection's value (NOT its name) into a "case" block, then change the options as desired.
 		/*case '2': //Builds an AOD-specific menu
@@ -45,12 +47,29 @@ function subtype(divName, eventType){
 	document.getElementById(divName).appendChild(newtype);
 }
 
-function removeElement()  {
-	// Find the last dropdown we created (remember how we kept track of divIds?)
-	divNum = document.getElementById(divIds.toString());
+function removeType(){
+	// Find the last dropdown we created (remember how we kept track of typeIds?)
+	divNum = document.getElementById(typeIds.toString() + "type");
 	console.log(divNum);
-	var d = document.getElementById('dynamicSubtype');
+	var d = document.getElementById('dynamicType');
 	// Decrement the id numbers, then delete the old thing.
-	divIds = divIds - 1;
+	typeIds = typeIds - 1;
+	d.removeChild(divNum);
+}
+
+function addLocation(){
+	locationIds++;
+	var newloc = document.createElement("div");
+	newloc.setAttribute("id", "location_" + locationIds.toString())//locationIds.toString() + "location");
+	var newlocid = newloc.getAttribute('id');
+	newloc.innerHTML = '<select name="dynamicLocation">' + document.getElementById("dynamicLocation").innerHTML + "</select>";
+	document.getElementById("location").appendChild(newloc);
+}
+
+function removeLocation(){
+	divNum = document.getElementById("location_" + locationIds.toString());
+	console.log(divNum);
+	var d = document.getElementById("location");
+	locationIds = locationIds - 1;
 	d.removeChild(divNum);
 }
