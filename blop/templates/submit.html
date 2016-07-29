@@ -4,19 +4,19 @@
 	<h1><div style='align-center'>Submit an Event</div></h1>
 	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
 	<form action="/processform" method="post">
-		<div id='dynamicSubtype'>
+		<div id='dynamicType'>
 			<label for="incident type">Incident Code</label><br>
 			<select id="incidents" name="incidents">
-				<option value="0">Select a Code</option>
+				<option value="0">Select an Incident Code</option>
 				{% for type in types %}
 				<option value={{ type.id }}>{{ type.code }}</option>
 				{% endfor %}
 			</select><br>
 		</div>
 		<div id="add/delete incident">
-			<input type="button" value="Add an Incident Code" onClick="subtype('dynamicSubtype', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeElement()"><br><br>
+			<input type="button" value="Add an Incident Code" onClick="addType('dynamicType', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeType()"><br><br>
 		</div>
-		<div id="location">
+		<div id="locations" name='locations'>
 			Location of Incident<br>
 			<select id="location" name="location">
 				<option value="0">Select a Location</option>

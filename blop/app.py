@@ -35,7 +35,7 @@ def maps():
 
 @app.route('/search/')
 def search():
-    types = db.session.query(models.Type).order_by(models.Type.code).all()
+    types = db.session.query(models.Type).order_by(models.Type.description).all()
     locations = db.session.query(models.Location).order_by(models.Location.name).all()
     return render_template('search.html', types=types, locations=locations)
 
@@ -161,6 +161,11 @@ def blottersearch():
             for q in query:
                 if l == q.location_id:
                     locationfilter.append(q)
+                    for i in query:
+                        groups = i.location.locgroups
+                        for g in groups:
+                            if g.name == q.location.name:
+                                locationfilter.append(i)
         result=list(set(result).intersection(locationfilter))
 
 

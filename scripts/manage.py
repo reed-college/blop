@@ -13,14 +13,60 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
 @manager.command
+def locgroup_seed():
+    models.Locgroup.query.delete()
+
+    with open('locgroups.csv', 'r') as csvfile:
+        locgroupreader = csv.DictReader(csvfile, delimiter=',')
+        for row in locgroupreader:
+            locgroup = models.Locgroup(name=row['group'])
+            db.session.add(locgroup)
+            db.session.commit()
+
+@manager.command
+def typecat_seed():
+
+    nonvcrime = models.Typecategory(category = "Nonviolent Crime")
+    db.session.add(nonvcrime)
+    titleix = models.Typecategory(category = "Title IX")
+    db.session.add(titleix)
+    theft = models.Typecategory(category = "Theft")
+    db.session.add(theft)
+    subs = models.Typecategory(category = "Substance Use Policy Violations")
+    db.session.add(subs)
+    vcrime = models.Typecategory(category = "Violent Crime")
+    db.session.add(vcrime)
+    med = models.Typecategory(category = "Medical or Other Assistance")
+    db.session.add(med)
+    house = models.Typecategory(category = "Housing Contract Violations")
+    db.session.add(house)
+    misc = models.Typecategory(category = "Miscellaneous")
+    db.session.add(misc)
+    db.session.commit()
+
+@manager.command
 def loc_seed():
+    models.Location.query.delete()
 
     with open('location_codes.csv', 'r') as csvfile:
         loccodereader = csv.DictReader(csvfile, delimiter=',')
+        groups = []
+        groupquery = db.session.query(models.Locgroup).all()
         for row in loccodereader:
-            loccode = models.Location(name=row['name'])
-            db.session.add(loccode)
+            oncampus = row['oncampus']
+            building = row['building type']
+            region = row['region']
+            group1 = row['group1']
+            group2 = row['group2']
+            for g in groupquery:
+                if g.name in (oncampus, building, region, group1, group2):
+                    groups.append(g)
+            location = models.Location(name = row['name'],
+                                       locgroups = groups
+                                       )
+            db.session.add(location)
             db.session.commit()
+            groups = []
 
 
 @manager.command
@@ -31,8 +77,11 @@ def type_seed():
     with open('incident_types.csv', 'r') as csvfile:
         typereader = csv.DictReader(csvfile, delimiter=',')
         for row in typereader:
+            cat = row['category']
+            category = db.session.query(models.Typecategory).filter(models.Typecategory.category == cat).first()
             typecode = models.Type(code=row['code'],
-                                   description=row['description'])
+                                   description=row['description'],
+                                   typecategory=category.id)
             db.session.add(typecode)
             db.session.commit()
 
