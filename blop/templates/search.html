@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block content %}
 
@@ -5,12 +6,12 @@
 	<!-- The file with the Javascript magic that is being invoked
 	here is in the Static folder.  That is what this tag says. -->
 	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
-	<form action="/processform" method="post">
+	<form action="/blottersearch" method="post">
 		<!-- Just your average date/time stuff.  Select tags, yay! -->
 		<div id="startdate">
 			<label for="date">Start Date</label><br>
 			<select id="start_month" name="start_month">
-				<option value="0">Select a Month</option>
+				<option value="0">Month</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
 				<option value="3">March</option>
@@ -25,7 +26,7 @@
 				<option value="12">December</option>
 			</select>
 			<select id="start_day" name="start_day">
-				<option value="0">Select a Day</option>
+				<option value="0">Day</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -57,12 +58,27 @@
 				<option value="29">29</option>
 				<option value="30">30</option>
 				<option value="31">31</option>
+			</select>
+			<select id="start_year" name="start_year">
+				<option value="0000">Year</option>
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
 			</select><br><br>
 		</div>
 		<div id="enddate">
 			<label for="date">End Date</label><br>
 			<select id="end_month" name="end_month">
-				<option value="0">Select a Month</option>
+				<option value="0">Month</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
 				<option value="3">March</option>
@@ -77,7 +93,7 @@
 				<option value="12">December</option>
 			</select>
 			<select id="end_day" name="end_day">
-				<option value="0">Select a Day</option>
+				<option value="0">Day</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -109,11 +125,27 @@
 				<option value="29">29</option>
 				<option value="30">30</option>
 				<option value="31">31</option>
+			</select>
+			<select id="end_year" name="end_year">
+				<option value="0000">Year</option>
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
 			</select><br><br>
 		</div>
 		<div id="starttime">
 			<label for="time">Start Time</label><br>
 			<select id="start_hour" name="start_hour">
+				<option value="12"></option>
 				<option value="12">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -129,12 +161,14 @@
 			</select>
 			:
 			<select id="start_minute" name="start_minute">
+				<option value="00"></option>
 				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
 			</select>
 			<select id="ampm_start" name="ampm_start">
+				<option value="am"></option>
 				<option value="am">AM</option>
 				<option value="pm">PM</option>
 			</select><br><br>
@@ -142,6 +176,7 @@
 		<div id="endtime">
 			<label for="time">End Time</label><br>
 			<select id="end_hour" name="end_hour">
+				<option value="11"></option>
 				<option value="12">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -157,18 +192,19 @@
 			</select>
 			:
 			<select id="end_minute" name="end_minute">
+				<option value="59"></option>
 				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
 			</select>
 			<select id="ampm_end" name="ampm_end">
+				<option value="pm"></option>
 				<option value="am">AM</option>
 				<option value="pm">PM</option>
 			</select><br><br>
 		</div>
-		<!-- This next bit will be dynamically added from the database
-		later, and will be condensed to one dropdown menu, iirc. -->
+		<!-- See dynamicType for an explanation of this sort of thing -->
 		<div id="location" name='location'>
 			Location of Incident<br>
 			<select id="dynamicLocation" name="dynamicLocation">
@@ -183,12 +219,10 @@
 		</div>
 		<!--
 		Okay, now for some hocus pocus.
-
 		The first bit here is using Jinja to loop over the list that we
 		passed from app.py (take a look under the /submit part).  For
 		each item there, we use the id as the returned value on form
 		submission, and the code as the display name.
-
 		The next div has two buttons.  Button 1 invokes the "subtype"
 		function in forms.js (located in the Static folder), and button 2
 		calls the "removeElement" function.  See that file's comments for
@@ -201,7 +235,7 @@
 		</div>
 		<div id='dynamicType'>
 			<select id="incidents" name="incidents">
-				<option value="0">Select an Incident Code</option>
+				<option value="0">Select an Incident Type</option>
 				{% for type in types %}
 				<option value={{ type.id }}>{{ type.description }}</option>
 				{% endfor %}

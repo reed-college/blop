@@ -30,13 +30,11 @@ function addType(divName, eventType){
 			shoves whatever we set it equal to into the HTML of our new thing.
 			This means that our database entries now show up in the dynamically
 			created dropdowns.  Yay!
-
 			Do note that, to my understanding, this is interpreted after Jinja
 			does its sweep, so typing in Jinja commands here will not work.
 			Our trick here is copying the Jinja code that has already been
 			interpreted, and so it is being passed through after it has been
 			turned into plain-old-HTML.
-
 			This is confusing.  Stare at this for a while, and come find me if
 			this makes no sense.
 			*/

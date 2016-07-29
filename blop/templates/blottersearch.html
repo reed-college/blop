@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>
+        Blotter Search Results
+    </h1>
+    <hr>
+    {% for r in result %}
+        <p>{{r.datetime}}</p>
+        <div>Types: {{r.types}}</div>
+        <div>Location: {{r.location.name }}</div>
+        <div>Summary: {{r.summary}}</div>
+        <hr>
+    {% endfor %}
+{% endblock %}

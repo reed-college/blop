@@ -42,7 +42,7 @@ Then to seed the database with types and locations, run `python scripts/manage.p
 Aaaaand we should be good to go!
 
 
-
+To add practice incidents to the database for development purposes, run `python scripts/manage.py add_fake_incidents`
 
 
 _________________________________________________________________________
