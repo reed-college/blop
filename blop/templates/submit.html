@@ -7,7 +7,7 @@
 		<div id='dynamicType'>
 			<label for="incident type">Incident Code</label><br>
 			<select id="incidents" name="incidents">
-				<option value="0">Select a Code</option>
+				<option value="0">Select an Incident Code</option>
 				{% for type in types %}
 				<option value={{ type.id }}>{{ type.code }}</option>
 				{% endfor %}

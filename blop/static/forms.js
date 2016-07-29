@@ -6,7 +6,6 @@ function addType(divName, eventType){
 	unique id.  That way, we can find and delete them later.  "typeIds" saves
 	a number than indicates how many boxes we have made, and what the last
 	one's id is.
-
 	When we call the function, we increment typeIds to create a new id.  Then,
 	we set its id to equal our new id value, then log it for dev purposes.
 	 */
