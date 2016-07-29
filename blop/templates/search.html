@@ -203,7 +203,7 @@
 			<select id="incidents" name="incidents">
 				<option value="0">Select an Incident Code</option>
 				{% for type in types %}
-				<option value={{ type.id }}>{{ type.code }}</option>
+				<option value={{ type.id }}>{{ type.description }}</option>
 				{% endfor %}
 			</select><br>
 		</div>
