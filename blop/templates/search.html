@@ -214,8 +214,9 @@
 				{% endfor %}
 			</select><br>
 		</div>
+		</div>
 		<div id="add/delete location">
-			<input type="button" value="Add a Location Code" onClick="addLocation('dynamicLocation', document.getElementById('location').value);"><input type="button" value="Delete an Incident Code" onClick="removeLocation()"><br><br>
+			<input type="button" value="Add a Location" onClick="addLocation('dynamicLocation', document.getElementById('location').value);"><input type="button" value="Delete a Location" onClick="removeLocation()"><br><br>
 		</div>
 		<!--
 		Okay, now for some hocus pocus.
@@ -235,9 +236,9 @@
 		</div>
 		<div id='dynamicType'>
 			<select id="incidents" name="incidents">
-				<option value="0">Select an Incident Type</option>
+				<option value="0">Select an Incident Code</option>
 				{% for type in types %}
-				<option value={{ type.id }}>{{ type.description }}</option>
+				<option value={{ type.id }}>{{ type.code }}</option>
 				{% endfor %}
 			</select><br>
 		</div>

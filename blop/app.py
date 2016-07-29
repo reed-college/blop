@@ -161,6 +161,11 @@ def blottersearch():
             for q in query:
                 if l == q.location_id:
                     locationfilter.append(q)
+                    for i in query:
+                        groups = i.location.locgroups
+                        for g in groups:
+                            if g.name == q.location.name:
+                                locationfilter.append(i)
         result=list(set(result).intersection(locationfilter))
 
 
