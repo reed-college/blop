@@ -7,17 +7,21 @@
 
           // adds a text element to serve as the incident counter
           function add_counter(index, location) {
-            var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            var bbox = location.getBBox();
+            $(location).on("mouseenter", function(){
+              var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+              var bbox = location.getBBox();
 
-            // attempt to center the text within its bounding box
-            text.setAttribute("transform", "translate(" + (bbox.x + bbox.width / 2) + " " + (bbox.y + bbox.height / 2) + ")")
+              // attempt to center the text within its bounding box
+              text.setAttribute("transform", "translate(" + (bbox.x + bbox.width / 2) + " " + (bbox.y + bbox.height / 2) + ")")
 
-            // undone: use the real value here instead
-            text.textContent = index;
-
-            // insert the node into the document
-            location.parentNode.insertBefore(text, this.nextSibling);
+              // undone: use the real value here instead
+              text.textContent = index;
+              // insert the node into the document
+              location.parentNode.insertBefore(text, this.nextSibling);
+            });
+            $(location).on("mouseleave", function(){
+              $(this.nextSibling).detach();  
+            });
           };
 
           // updates the info pane div for the current selection when the user
