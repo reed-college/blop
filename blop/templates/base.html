@@ -1,7 +1,7 @@
 <html>
 	<head>
 
-      <style type="text/css">
+    <style type="text/css">
       #reed_buildings > path:hover {
           cursor: pointer;
           fill: #000000;
@@ -33,21 +33,25 @@
       <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
 
       <script type="text/javascript">
-        /* define some helper functions that will be used with jQuery's .each() */
+          /* define some helper functions that will be used with jQuery's .each() */
 
-        // adds a text element to serve as the incident counter
+          // adds a text element to serve as the incident counter
         function add_counter(index, location) {
-          var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-          var bbox = location.getBBox();
+          $(location).on("mouseenter", function(){
+            var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            var bbox = location.getBBox();
 
-          // attempt to center the text within its bounding box
-          text.setAttribute("transform", "translate(" + (bbox.x + bbox.width / 2) + " " + (bbox.y + bbox.height / 2) + ")")
+            // attempt to center the text within its bounding box
+            text.setAttribute("transform", "translate(" + (bbox.x + bbox.width / 2) + " " + (bbox.y + bbox.height / 2) + ")")
 
-          // undone: use the real value here instead
-          text.textContent = index;
-
-          // insert the node into the document
-          location.parentNode.insertBefore(text, this.nextSibling);
+            // undone: use the real value here instead
+            text.textContent = index;
+            // insert the node into the document
+            location.parentNode.insertBefore(text, this.nextSibling);
+          });
+          $(location).on("mouseleave", function(){
+            $(this.nextSibling).detach();  
+          });
         };
 
         // updates the info pane div for the current selection when the user
@@ -62,7 +66,6 @@
         // document ready handler; we will arrange for this function to be called
         // when the page is ready
         function dom_content_loaded() {
-          // console.log("working");
           /*
           The anonymous function passed as the second argument is also known as
           a callback or event handler.  It can reference the add_counter and
@@ -72,20 +75,16 @@
           were in scope when the function was declared (here).
           */
           $("object#blop-svg").on("load", function() {
-          // var svg = $("object#blop-svg"); //.on("load", function() {
-            // ^ The commented out line of code above is another way
-            // to write the svg object as the receiver of an anonymous
-            // function that retrieves the list of path elements for a "load"
-            // event
             // get the list of path elements into a local variable
-            // console.log("callback");
             var locations = $(this.contentDocument).find("#reed_buildings > path");
+
             // use jQuery's .each() to call our functions against each location
             locations.each(add_counter);
             locations.each(add_onclick);
           });
         };
 
+      
         /*
         Arrange for our handler to run when all the DOM content has loaded.
         This is written last but it is actually the first thing our script tag
