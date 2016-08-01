@@ -1,1 +1,129 @@
-nameAmber BridgeAmphitheaterBirchwood lotBlue BridgeBotsford DriveBouncy BridgeCampusCanyonCentral CampusEast LotEliot Circle/Main DriveFish LadderFlag PoleFront LawnGrove LotLand BridgeNorth East QuadrantNorth LotNorth Lot LowerNorth Lot UpperNorthwest QuadrantPrexy LotQuadRCA LotReed LakeSallyPortSoutheast QuadrantSouthwest QuadrantSports FieldSteam TunnelsSteele LotTennis CourtsWest LotAbingtonAnna MannAspenBidwellBike CoopBragdonCaffe CircoCanyon HouseChinese HouseChittickCross Canyon dormsDoyleEastportFarm HouseFosterFoster/Scholz/MacNaughtonFrench HouseGarden HouseGarden/Canyon/Farm housesGerman HouseGriffinGrove DormsInterior DormsKerrLaddLanguage HousesMacNaughtonMcKinleyNaitoNaito/SullivanOld Dorm BlockQuincyReed College ApartmentsRussian HouseScholzSequoiaSitkaSpanish HouseSullivanVeggie HousesWestportWinch/CapehartWoodbridge28 WestArt BuildingBack Pack CoopBand Practice RoomBiologyBookstore/Homer's HutCenter for Advanced ComputationChapelChemistryCommonsCooley galleryDorothy Johansen HouseEducational Technology CenterEliot HallGCC/SUGray Campus CenterGreenwoodGreywoodGrowing Seeds/Child CareHealth CenterHealth/Growing Seeds/Medical OfficesKaul AuditoriumKRRCLibraryMedical Office NorthMedical Office SouthMedical OfficesPAB/Performing Arts BuildingParadox Lost/New/BioParadox Old/SU/WestParker HousePhysical PlantPhysicsPool HallPool/Storage AreaPrexyPsychologyPublic Policy WorkshopReactorScience BuildingsSports CenterStudent CenterStudent UnionTheatreTheatre AnnexVollumWarehouseWomen's CenterFaculty HousesRhododendron GardensSki cabin
+name,oncampus,building type,region,group1,group2
+Amber Bridge,Campus,Outside,Canyon,Amber Bridge,Bouncy Bridge
+Amphitheater,Campus,Outside,Central Campus,,
+Birchwood lot,Campus,Outside,Northwest Quadrant,,
+Blue Bridge,Campus,Outside,Canyon,,
+Botsford Drive,Campus,Outside,Southwest Quadrant,,
+Bouncy Bridge,Campus,Outside,Canyon,Amber Bridge,Bouncy Bridge
+Campus,Campus,Outside,,,
+Canyon,Campus,Outside,Canyon,,
+Central Campus,Campus,Outside,Central Campus,,
+East Lot,Campus,Outside,Southeast Quadrant,,
+Eliot Circle/Main Drive,Campus,Outside,Southeast Quadrant,,
+Fish Ladder,Campus,Outside,Canyon,,
+Flag Pole,Campus,Outside,Southwest Quadrant,Front Lawn,
+Front Lawn,Campus,Outside,Southwest Quadrant,Front Lawn,
+Grove Lot,Campus,Outside,Northwest Quadrant,,
+Land Bridge,Campus,Outside,Canyon,,
+North East Quadrant,Campus,Outside,North East Quadrant,,
+North Lot,Campus,Outside,North East Quadrant,North Lot,
+North Lot Lower,Campus,Outside,North East Quadrant,North Lot,
+North Lot Upper,Campus,Outside,North East Quadrant,North Lot,
+Northwest Quadrant,Campus,Outside,Northwest Quadrant,,
+Prexy Lot,Campus,Outside,Southwest Quadrant,,
+Quad,Campus,Outside,Central Campus,,
+RCA Lot,Campus,Outside,Northwest Quadrant,,
+Reed Lake,Campus,Outside,Canyon,,
+SallyPort,Campus,Outside,Central Campus,,
+Southeast Quadrant,Campus,Outside,Southeast Quadrant,,
+Southwest Quadrant,Campus,Outside,Southwest Quadrant,,
+Sports Field,Campus,Outside,North East Quadrant,,
+Steam Tunnels,Campus,Outside,Central Campus,,
+Steele Lot,Campus,Outside,,,
+Tennis Courts,Campus,Outside,Northwest Quadrant,,
+West Lot,Campus,Outside,Southwest Quadrant,,
+Abington,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Anna Mann,Campus,Residence Hall,Southwest Quadrant,,
+Aspen,Campus,Residence Hall,Northwest Quadrant,Grove Dorms,
+Bidwell,Campus,Residence Hall,Northwest Quadrant,Grove Dorms,
+Bike Coop,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Bragdon,Campus,Residence Hall,North East Quadrant,,
+Caffe Circo,Campus,Residence Hall,Northwest Quadrant,Grove Dorms,
+Canyon House,Campus,Residence Hall,Northwest Quadrant,Garden/Canyon/Farm houses,Veggie Houses
+Chinese House,Campus,Residence Hall,Southeast Quadrant,Language Houses,
+Chittick,Campus,Residence Hall,North East Quadrant,Cross Canyon dorms,
+Cross Canyon dorms,Campus,Residence Hall,Northwest Quadrant,Cross Canyon dorms,
+Doyle,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Eastport,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Farm House,Campus,Residence Hall,Northwest Quadrant,Garden/Canyon/Farm houses,Veggie Houses
+Foster,Campus,Residence Hall,Southwest Quadrant,Foster/Scholz/MacNaughton,
+Foster/Scholz/MacNaughton,Campus,Residence Hall,Southwest Quadrant,Foster/Scholz/MacNaughton,
+French House,Campus,Residence Hall,Southeast Quadrant,Language Houses,
+Garden House,Campus,Residence Hall,Northwest Quadrant,Garden/Canyon/Farm houses,Veggie Houses
+Garden/Canyon/Farm houses,Campus,Residence Hall,Northwest Quadrant,Garden/Canyon/Farm houses,Veggie Houses
+German House,Campus,Residence Hall,Southeast Quadrant,Language Houses,
+Griffin,Campus,Residence Hall,North East Quadrant,Cross Canyon dorms,
+Grove Dorms,Campus,Residence Hall,Northwest Quadrant,Grove Dorms,
+Interior Dorms,Campus,Residence Hall,,,
+Kerr,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Ladd,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Language Houses,Campus,Residence Hall,Southeast Quadrant,Language Houses,
+MacNaughton,Campus,Residence Hall,Southwest Quadrant,Foster/Scholz/MacNaughton,
+McKinley,Campus,Residence Hall,North East Quadrant,Cross Canyon dorms,
+Naito,Campus,Residence Hall,North East Quadrant,Naito/Sullivan,
+Naito/Sullivan,Campus,Residence Hall,North East Quadrant,Naito/Sullivan,
+Old Dorm Block,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Quincy,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Reed College Apartments,Campus,Residence Hall,Northwest Quadrant,,
+Russian House,Campus,Residence Hall,Southeast Quadrant,Language Houses,
+Scholz,Campus,Residence Hall,Southwest Quadrant,Foster/Scholz/MacNaughton,
+Sequoia,Campus,Residence Hall,Northwest Quadrant,Grove Dorms,
+Sitka,Campus,Residence Hall,Northwest Quadrant,Grove Dorms,
+Spanish House,Campus,Residence Hall,Southeast Quadrant,Language Houses,
+Sullivan,Campus,Residence Hall,North East Quadrant,Naito/Sullivan,
+Veggie Houses,Campus,Residence Hall,Northwest Quadrant,Garden/Canyon/Farm houses,Veggie Houses
+Westport,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Winch/Capehart,Campus,Residence Hall,Central Campus,Old Dorm Block,
+Woodbridge,Campus,Residence Hall,North East Quadrant,Cross Canyon dorms,
+28 West,Campus,,Northwest Quadrant,,
+Art Building,Campus,,Southeast Quadrant,,
+Back Pack Coop,Campus,Residence Hal,Central Campus,Old Dorm Block,
+Band Practice Room,Campus,,Central Campus,GCC/SU,Gray Campus Center
+Biology,Campus,,Southeast Quadrant,Science Buildings,
+Bookstore/Homer's Hut,Campus,,Central Campus,GCC/SU,Gray Campus Center
+Center for Advanced Computation,Campus,,Southeast Quadrant,,
+Chapel,Campus,,Central Campus,Eliot Hall,
+Chemistry,Campus,,Southeast Quadrant,Science Buildings,
+Commons,Campus,,Central Campus,GCC/SU,Gray Campus Center
+Cooley gallery,Campus,,Southeast Quadrant,Library,
+Dorothy Johansen House,Campus,,Southeast Quadrant,,
+Educational Technology Center,Campus,,Southeast Quadrant,,
+Eliot Hall,Campus,,Central Campus,Eliot Hall,
+GCC/SU,Campus,,Central Campus,GCC/SU,
+Gray Campus Center,Campus,,Central Campus,GCC/SU,Gray Campus Center
+Greenwood,Campus,,Canyon,Greenwood,
+Greywood,Campus,,Southeast Quadrant,,
+Growing Seeds/Child Care,Campus,,Northwest Quadrant,Health/Growing Seeds/Medical Offices,
+Health Center,Campus,,Northwest Quadrant,Health/Growing Seeds/Medical Offices,
+Health/Growing Seeds/Medical Offices,Campus,,Northwest Quadrant,Health/Growing Seeds/Medical Offices,
+Kaul Auditorium,Campus,,Southwest Quadrant,,
+KRRC,Campus,,Central Campus,GCC/SU,Student Union
+Library,Campus,,Southeast Quadrant,Library,
+Medical Office North,Campus,,Northwest Quadrant,Health/Growing Seeds/Medical Offices,Medical Offices
+Medical Office South,Campus,,Northwest Quadrant,Health/Growing Seeds/Medical Offices,Medical Offices
+Medical Offices,Campus,,Northwest Quadrant,Health/Growing Seeds/Medical Offices,Medical Offices
+PAB/Performing Arts Building,Campus,,Southwest Quadrant,,
+Paradox Lost/New/Bio,Campus,,Southeast Quadrant,Science Buildings,
+Paradox Old/SU/West,Campus,,Central Campus,GCC/SU,Student Union
+Parker House,Campus,,,,
+Physical Plant,Campus,,Central Campus,,
+Physics,Campus,,Southeast Quadrant,Science Buildings,
+Pool Hall,Campus,,Central Campus,GCC/SU,Gray Campus Center
+Pool/Storage Area,Campus,,Southwest Quadrant,Sports Center,
+Prexy,Campus,,Southwest Quadrant,,
+Psychology,Campus,,Southeast Quadrant,Science Buildings,
+Public Policy Workshop,Campus,,Central Campus,Eliot Hall,
+Reactor,Campus,,Southeast Quadrant,Science Buildings,
+Science Buildings,Campus,,Southeast Quadrant,Science Buildings,
+Sports Center,Campus,,Southwest Quadrant,Sports Center,
+Student Center,Campus,,Central Campus,,
+Student Union,Campus,,Central Campus,GCC/SU,Student Union
+Theatre,Campus,,Canyon,Greenwood,
+Theatre Annex,Campus,,Northwest Quadrant,,
+Vollum,Campus,,Southeast Quadrant,,
+Warehouse,Campus,,Northwest Quadrant,,
+Women's Center,Campus,,Central Campus,GCC/SU,
+Residence Hall,Campus,Residence Hall,,,
+Faculty Houses,,,,,
+Rhododendron Gardens,,,,,
+Ski cabin,,,,,
