@@ -6,7 +6,7 @@
     <hr>
     {% for r in result %}
         <p>{{r.datetime}}</p>
-        <div>{% for t in r.types %}Type: {{t}} (Category: {{ t.category.category}})</div>{% endfor %}
+        {% for t in r.types %}<div>Type: {{t}} (Category: {{ t.category.category}})</div>{% endfor %}
         <div>Location: {{r.location.name }}</div>
         <div>Location Group(s): {{ r.location.locgroups }}</div>
         <div>Summary: {{r.summary}}</div>
