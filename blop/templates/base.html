@@ -13,6 +13,11 @@
           margin: 0 auto;
       }
 
+      /* a class for selected buildings */
+/*      .selected {
+        border: 2px solid #fff;
+      }*/
+
       /* a container for the svg object, so we can add borders, padding, etc */
       div#blop-map {
           border: 1px solid #ccc;
@@ -24,8 +29,15 @@
           border: 1px solid #ccc;
       }
 
+      /* div for "popup" box containing more info on incidents associated with
+        selected building */
+      div#info-box {
+          margin-top: 1em;
+          border: 1px solid #ccc;
+      }
+
       /* the svg object itself */
-          object#blop-svg {
+      object#blop-svg {
           width: 100%;
       }
       </style>
@@ -52,17 +64,42 @@
 
         // updates the info pane div for the current selection when the user
         // clicks on the location
-        function add_onclick(index, location) {
+        // function add_onclick(index, location) {
+        //   $(location).on("click", function() {
+        //     // undone: find other, better ways of doing this
+        //     $("#blop-info-pane").html("<h2>Current selection: " + index + "</h2>");
+        //   });
+        // };
+
+        // popup window code with if/else for selecting and deselecting buildings
+        // function popup_onclick(index, location) {
+        //   $(location).on("click", function() {
+        //     // will probably need an if/else for selecting and deselecting buildings,
+        //     // or else the page will end up looking cluttered with all the selected
+        //     // popups
+        //     if($(this)).hasClass("selected")) {
+        //       deselect($(this));
+        //   }
+        //     else {
+        //       $(this).addClass("selected");
+        //       $("#info-box").slideFadeToggle();
+        //     }
+        //     return false;
+        //   });
+        // };
+
+        function popup_onclick(index, location) {
+          console.log("popup function");
           $(location).on("click", function() {
-            // undone: find other, better ways of doing this
-            $("#blop-info-pane").html("<h2>Current selection: " + index + "</h2>");
+            $("#info-box").html(index);
+            console.log("info box");
           });
         };
 
         // document ready handler; we will arrange for this function to be called
         // when the page is ready
         function dom_content_loaded() {
-          // console.log("working");
+          console.log("working");
           /*
           The anonymous function passed as the second argument is also known as
           a callback or event handler.  It can reference the add_counter and
@@ -82,7 +119,8 @@
             var locations = $(this.contentDocument).find("#reed_buildings > path");
             // use jQuery's .each() to call our functions against each location
             locations.each(add_counter);
-            locations.each(add_onclick);
+            // locations.each(add_onclick);
+            locations.each(popup_onclick);
           });
         };
 
