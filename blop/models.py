@@ -57,10 +57,13 @@ class Location(db.Model):
                             backref=db.backref('location',
                                                cascade="all",
                                                lazy='dynamic'))
+    building = db.Column(db.Boolean)
 
-    def __init__(self, name, locgroups):
+
+    def __init__(self, name, locgroups, building):
         self.name = name
         self.locgroups = locgroups
+        self.building = building
 
     def __repr__(self):
         return '<Specific Location {}>'.format(self.name)

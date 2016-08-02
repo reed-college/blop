@@ -83,6 +83,8 @@ def processform():
 
 @app.route('/blottersearch', methods=['GET', 'POST'])
 def blottersearch():
+
+    print(request.form)
     
     starthour = int(request.form['start_hour'])
     if request.form['ampm_start']=='am':    
@@ -154,8 +156,11 @@ def blottersearch():
 
     result = [val for val in datefilter if val in timefilter]
 
-    if request.form['location']!='0':
-        locs = request.form.getlist('location',type=int)
+    if request.form['dynamicLocation']!='0':
+        locs = request.form.getlist('dynamicLocation',type=int)
+        print(locs)
+        locs = list(set(locs))
+        print(locs)
         locationfilter = []
         for l in locs:
             for q in query:
@@ -168,9 +173,11 @@ def blottersearch():
                                 locationfilter.append(i)
         result=list(set(result).intersection(locationfilter))
 
-
     if request.form['incidents']!='0':
         types = request.form.getlist('incidents',type=int)
+        print(types)
+        types = list(set(types))
+        print(types)
         typefilter=[]
         if request.form['and_or'] == 'or':
             for q in query:
@@ -185,7 +192,7 @@ def blottersearch():
                 for r in q.types:
                     tid = r.id
                     ttypes.append(tid)
-                if set(types)==set(ttypes):
+                if set(types) <= set(ttypes):
                     typefilter.append(q)
                     ttypes = []
 

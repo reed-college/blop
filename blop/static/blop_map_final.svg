@@ -140,12 +140,16 @@
 		<g id="reed_property">
 			<path clip-path="url(#SVG_CP_1)" fill="#E0D6BA" fill-rule="evenodd" stroke="none" d="M593.31331,393.57597L592.83328,409.17502
 				L585.15285,408.93503L585.63288,393.33598L593.31331,393.57597z"/>
+			
 			<path clip-path="url(#SVG_CP_1)" fill="#E0D6BA" fill-rule="evenodd" stroke="none" d="M585.63288,393.33598L585.15285,408.93503
 				L577.47242,408.69505L577.71243,393.096L585.63288,393.33598z"/>
+			
 			<path clip-path="url(#SVG_CP_1)" fill="#E0D6BA" fill-rule="evenodd" stroke="none" d="M594.03335,373.89717L593.79334,377.97692
 				L593.31331,393.57597L585.63288,393.33598L577.71243,393.096L578.19246,377.49695L578.43247,373.4172L594.03335,373.89717z"/>
+		
 			<path clip-path="url(#SVG_CP_1)" fill="#E0D6BA" fill-rule="evenodd" stroke="none" d="M601.71378,373.89717L601.71378,378.21691
 				L601.23375,393.81595L593.31331,393.57597L593.79334,377.97692L594.03335,373.89717L601.71378,373.89717z"/>
+
 			<path clip-path="url(#SVG_CP_1)" fill="#E0D6BA" fill-rule="evenodd" stroke="none" d="M609.63423,374.13716L609.39421,378.45689
 				L608.91418,394.05594L601.23375,393.81595L601.71378,378.21691L601.71378,373.89717L609.63423,374.13716z"/>
 			<path clip-path="url(#SVG_CP_1)" fill="#E0D6BA" fill-rule="evenodd" stroke="none" d="M617.31466,374.37714L617.31466,378.69688

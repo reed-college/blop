@@ -62,7 +62,8 @@ def loc_seed():
                 if g.name in (oncampus, building, region, group1, group2):
                     groups.append(g)
             location = models.Location(name = row['name'],
-                                       locgroups = groups
+                                       locgroups = groups,
+                                       building = row['building']
                                        )
             db.session.add(location)
             db.session.commit()
