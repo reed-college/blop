@@ -236,14 +236,14 @@
 		</div>
 		<div id='dynamicType'>
 			<select id="incidents" name="incidents">
-				<option value="0">Select an Incident Code</option>
+				<option value="0">Select an Incident Type</option>
 				{% for type in types %}
-				<option value={{ type.id }}>{{ type.code }}</option>
+				<option value={{ type.id }}>{{ type.description }}</option>
 				{% endfor %}
 			</select><br>
 		</div>
 		<div id="add/delete incident">
-			<input type="button" value="Add an Incident Code" onClick="addType('dynamicType', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeType()"><br><br>
+			<input type="button" value="Add an Incident Type" onClick="addType('dynamicType', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Type" onClick="removeType()"><br><br>
 		</div>
 		<!-- And this is just a text box and a button.  Boring. -->
 		<div id="textsearch">
