@@ -96,7 +96,7 @@ def add_fake_incidents(): # adds 100 fake incidents to the database for dev
                                    datetime=dt,
                                    summary=summary,
                                    types=[typeOne, typeTwo],
-                                   location=location
+                                   location_id=location.id
         )
         db.session.add(incident) #then it's added to the db and committed.
         db.session.commit()
