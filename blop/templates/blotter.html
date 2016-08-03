@@ -7,8 +7,9 @@
     <hr>
     {% for incident in incidents.items %}
         <p>{{incident.datetime}}</p>
-        <div>Types: {{incident.types}}</div>
+        {% for t in incident.types %}<div>Type: {{t}} (Category: {{ t.category.category}})</div>{% endfor %}
         <div>Location: {{incident.location.name }}</div>
+        <div>Location Group(s): {{ incident.location.locgroups }}</div>
         <div>Summary: {{incident.summary}}</div>
         <hr>
     {% endfor %}

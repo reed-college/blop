@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-This will be the map page
 
-
-<h1>BLOP</h1>
-<div id="blop-map">
-<!-- css for the svg is in svg.css, which is linked from the .svg -->
-<!-- The svg file is housed in the static directory -->
+<div class="container">
+  <h1>BLOP</h1>
+  <div id="blop-map">
+    <!-- css for the svg is in svg.css, which is linked from the .svg -->
     <object id="blop-svg" data="../static/blop_map_final.svg" type="image/svg+xml">
     </object>
+  </div>
+  <div id="blop-info-pane"></div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
 <script type="text/javascript">

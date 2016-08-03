@@ -1,12 +1,43 @@
 <html>
 	<head>
-        <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
 
-        <script type="text/javascript">
+    <style type="text/css">
+      #reed_buildings > path:hover {
+          cursor: pointer;
+          fill: #000000;
+      }
+
+      /* a centered single column container for the rest of the page content */
+      .container {
+          width: 800px;
+          margin: 0 auto;
+      }
+
+      /* a container for the svg object, so we can add borders, padding, etc */
+      div#blop-map {
+          border: 1px solid #ccc;
+      }
+
+      /* an element representing an info pane for the current selection */
+      div#blop-info-pane {
+          margin-top: 1em;
+          border: 1px solid #ccc;
+      }
+
+      /* the svg object itself */
+          object#blop-svg {
+          width: 100%;
+      }
+      </style>
+
+      <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+
+      <script type="text/javascript">
           /* define some helper functions that will be used with jQuery's .each() */
 
           // adds a text element to serve as the incident counter
-          function add_counter(index, location) {
+        function add_counter(index, location) {
+          $(location).on("mouseenter", function(){
             var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
             var bbox = location.getBBox();
 
@@ -15,95 +46,72 @@
 
             // undone: use the real value here instead
             text.textContent = index;
-
             // insert the node into the document
             location.parentNode.insertBefore(text, this.nextSibling);
-          };
+          });
+          $(location).on("mouseleave", function(){
+            $(this.nextSibling).detach();  
+          });
+        };
 
-          // updates the info pane div for the current selection when the user
-          // clicks on the location
-          function add_onclick(index, location) {
-            $(location).on("click", function() {
-              // undone: find other, better ways of doing this
-              $("#blop-info-pane").html("<h2>Current selection: " + index + "</h2>");
-            });
-          };
+        // updates the info pane div for the current selection when the user
+        // clicks on the location
+        function add_onclick(index, location) {
+          $(location).on("click", function() {
+            // undone: find other, better ways of doing this
+            $("#blop-info-pane").html("<h2>Current selection: " + index + "</h2>");
+          });
+        };
 
-          // document ready handler; we will arrange for this function to be called
-          // when the page is ready
-          function dom_content_loaded() {
-            /*
-            The anonymous function passed as the second argument is also known as
-            a callback or event handler.  It can reference the add_counter and
-            add_onclick functions because it creates what is called a closure:
-            The function, even though it executes at some point in the future
-            (when the "load" event fires), will retain access to the variables that
-            were in scope when the function was declared (here).
-            */
-            $("object#blop-svg").on("load", function() {
-              // get the list of path elements into a local variable
-              var locations = $(this.contentDocument).find("#reed_buildings > path");
-
-              // use jQuery's .each() to call our functions against each location
-              locations.each(add_counter);
-              locations.each(add_onclick);
-            });
-          };
-
+        // document ready handler; we will arrange for this function to be called
+        // when the page is ready
+        function dom_content_loaded() {
           /*
-          Arrange for our handler to run when all the DOM content has loaded.
-          This is written last but it is actually the first thing our script tag
-          will do, now that everything we need has been declared (but not executed).
-
-          If our script(s) were to start running immediately, they might refer to
-          DOM objects which don't yet exist and crash.
-
-          Another technique to do this is to put your script tags at the end of the
-          <body> tag, but I prefer this method.
-
-          I could also have written the following statement in the jQuery style:
-            $(document).ready(dom_content_loaded);
-          but am using the "native" style for illustration purposes:
+          The anonymous function passed as the second argument is also known as
+          a callback or event handler.  It can reference the add_counter and
+          add_onclick functions because it creates what is called a closure:
+          The function, even though it executes at some point in the future
+          (when the "load" event fires), will retain access to the variables that
+          were in scope when the function was declared (here).
           */
-          document.addEventListener("DOMContentLoaded", dom_content_loaded);
-        </script>
+          $("object#blop-svg").on("load", function() {
+            // get the list of path elements into a local variable
+            var locations = $(this.contentDocument).find("#reed_buildings > path");
 
-	</head>
-	<body>
-        <style type="text/css">
-            #reed_buildings > path:hover {
-                cursor: pointer;
-                fill: #000000;
-            }
+            // use jQuery's .each() to call our functions against each location
+            locations.each(add_counter);
+            locations.each(add_onclick);
+          });
+        };
 
-            /* a centered single column container for the rest of the page content */
-            .container {
-                width: 800px;
-                margin: 0 auto;
-            }
+      
+        /*
+        Arrange for our handler to run when all the DOM content has loaded.
+        This is written last but it is actually the first thing our script tag
+        will do, now that everything we need has been declared (but not executed).
 
-            /* a container for the svg object, so we can add borders, padding, etc */
-            div#blop-map {
-                border: 1px solid #ccc;
-            }
+        If our script(s) were to start running immediately, they might refer to
+        DOM objects which don't yet exist and crash.
 
-            /* an element representing an info pane for the current selection */
-            div#blop-info-pane {
-                margin-top: 1em;
-                border: 1px solid #ccc;
-            }
+        Another technique to do this is to put your script tags at the end of the
+        <body> tag, but I prefer this method.
 
-            /* the svg object itself */
-                object#blop-svg {
-                width: 100%;
-            }
+        I could also have written the following statement in the jQuery style:
+          $(document).ready(dom_content_loaded);
+        but am using the "native" style for illustration purposes:
+        */
+        document.addEventListener("DOMContentLoaded", dom_content_loaded);
+      </script>
 
-        </style>
-
+  </head>
+  <body>
+    <div id="banner">
         <h1>CSO Blotter</h1>
         <hr>
-        <a href="/map">Map</a> | <a href="/blotter">Blotter</a> | <a href="/search">Search</a> | <a href="/submit">Submit Incident</a> | <a href="/login">Log In</a>
+        <a href="/map">Map</a> | <a href="/blotter">Blotter</a> | <a href="/search">Search</a> | <a href="/submit">Submit Incident</a> | <a href="/edit">Edit Past Submission</a>
         <hr>
+    </div>
+  </body>
 		{% block content %}{% endblock %}
-	</body>
+
 </html>

@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
-	<h1><div style='align-center'>Submit an Event</div></h1>
+	<h1><div style='align-center'>Edit an Event</div></h1>
 	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
-	<form action="/processform" method="post">
+	<form action="/edit/submit" method="post">
+		<div id = 'id'>
+			<label for="incident id">Incident ID:</label>
+			<select id="id" name="id">
+				<option value = {{ incident.id }}>{{ incident.id }}</option>
+			</select><br><br>
+		</div>
 		<div id='dynamicType'>
 			<label for="incident type">Incident Code</label><br>
+			{% for t in incident.types %}
 			<select id="incidents" name="incidents">
-				<option value="0">Select an Incident Code</option>
+				<option value={{ t.id }}>{{ t.code }}</option>
 				{% for type in types %}
 				<option value={{ type.id }}>{{ type.code }}</option>
 				{% endfor %}
 			</select><br>
+			{% endfor %}
 		</div>
 		<div id="add/delete incident">
 			<input type="button" value="Add an Incident Code" onClick="addType('dynamicType', document.getElementById('incidents').value);"><input type="button" value="Delete an Incident Code" onClick="removeType()"><br><br>
@@ -19,7 +27,7 @@
 		<div id="locations" name='locations'>
 			Location of Incident<br>
 			<select id="location" name="location">
-				<option value="0">Select a Location</option>
+				<option value={{ incident.location_id }}>{{ incident.location.name }}</option>
 				{% for loc in locations %}
 				<option value={{ loc.id }}>{{ loc.name }}</option>
 				{% endfor %}
@@ -28,7 +36,7 @@
 		<div id="date">
 			<label for="date">Date of Incident</label><br>
 			<select id="month dropdown" name="month dropdown">
-				<option value="0">Month</option>
+				<option value={{ incident.datetime.month }}>{{ month }}</option>
 				<option value="1">January</option>
 				<option value="2">February</option>
 				<option value="3">March</option>
@@ -43,7 +51,7 @@
 				<option value="12">December</option>
 			</select>
 			<select id="day dropdown" name="day dropdown">
-				<option value="0">Day</option>
+				<option value={{ incident.datetime.day }}>{{ incident.datetime.day }}</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -77,7 +85,7 @@
 				<option value="31">31</option>
 			</select>
 			<select id="year dropdown" name="year dropdown">
-				<option value="0000">Year</option>
+				<option value= {{ incident.datetime.year }}>{{ incident.datetime.year }}</option>
 				<option value="2005">2005</option>
 				<option value="2006">2006</option>
 				<option value="2007">2007</option>
@@ -95,7 +103,8 @@
 		<div id="time">
 			<label for="time">Time of Incident</label><br>
 			<select id="hour dropdown" name="hour dropdown">
-				<option value="12">12</option>
+				<option value={{ incident.datetime.hour }}>{{ hour }}</option>
+				<option value="0">12</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -107,22 +116,31 @@
 				<option value="9">9</option>
 				<option value="10">10</option>
 				<option value="11">11</option>
+				<option value="12">11</option>
+				<option value="13">11</option>
+				<option value="14">11</option>
+				<option value="15">11</option>
+				<option value="16">11</option>
+				<option value="17">11</option>
+				<option value="18">11</option>
+				<option value="19">11</option>
+				<option value="20">11</option>
+				<option value="21">11</option>
+				<option value="22">11</option>
+				<option value="23">11</option>
 			</select>
 			:
 			<select id="minute dropdown" name="minute dropdown">
+				<option value={{ incident.datetime.minute }}>{{ minute }}</option>
 				<option value="00">00</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
 				<option value="45">45</option>
-			</select>
-			<select id="AM/PM dropdown" name="AM/PM dropdown">
-				<option value="0">AM</option>
-				<option value="1">PM</option>
 			</select><br><br>
 		</div>	
 		<div id="summary">
 			<label for="summary">Summary of Incident</label><br>
-			<textarea id="summary field" rows="8" cols="75" placeholder="Enter a summary of the incident here." name="summary field"></textarea><br><br>
+			<textarea id="summary field" rows="8" cols="75" name="summary field">{{ incident.summary }}</textarea><br><br>
 		</div>
 		<div id="submit">
 			<input type="submit" value="Submit an Incident">

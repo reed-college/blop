@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from blop import db
 from flask_sqlalchemy import SQLAlchemy
 import datetime
@@ -30,7 +30,11 @@ def blotter(page=1):
 @app.route('/')
 @app.route('/map')
 def maps():
-    return render_template('map.html')
+    today = datetime.datetime.now()
+    year = today.year - 1
+    startdate = today.replace(year = year)
+    incidents = db.session.query(models.Incident).filter(models.Incident.datetime >= startdate).all()
+    return render_template('map.html', incidents = incidents)
 
 
 @app.route('/search/')
@@ -154,18 +158,28 @@ def blottersearch():
 
     result = [val for val in datefilter if val in timefilter]
 
-    if request.form['location']!='0':
-        locs = request.form.getlist('location',type=int)
+    if request.form['dynamicLocation']!='0':
+        locs = request.form.getlist('dynamicLocation',type=int)
+        print(locs)
+        locs = list(set(locs))
+        print(locs)
         locationfilter = []
         for l in locs:
             for q in query:
                 if l == q.location_id:
                     locationfilter.append(q)
+                    for i in query:
+                        groups = i.location.locgroups
+                        for g in groups:
+                            if g.name == q.location.name:
+                                locationfilter.append(i)
         result=list(set(result).intersection(locationfilter))
-
 
     if request.form['incidents']!='0':
         types = request.form.getlist('incidents',type=int)
+        print(types)
+        types = list(set(types))
+        print(types)
         typefilter=[]
         if request.form['and_or'] == 'or':
             for q in query:
@@ -180,7 +194,7 @@ def blottersearch():
                 for r in q.types:
                     tid = r.id
                     ttypes.append(tid)
-                if set(types)==set(ttypes):
+                if set(types) <= set(ttypes):
                     typefilter.append(q)
                     ttypes = []
 
@@ -194,6 +208,55 @@ def blottersearch():
         result=list(set(result).intersection(summaryfilter))
     result = sorted(result, key= lambda incident: incident.datetime, reverse = True)
     return render_template('blottersearch.html', result = result)
+
+
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+    return render_template('edit.html')
+
+@app.route('/edit/form', methods=['GET', 'POST'])
+def editform():
+    result = int(request.form['id'])
+    incident = db.session.query(models.Incident).filter(models.Incident.id == result).one()
+    dt = incident.datetime
+    month = dt.strftime("%B")
+    hour = dt.strftime("%H")
+    minute = dt.strftime("%M")
+    types = db.session.query(models.Type).all()
+    locations = db.session.query(models.Location).all()
+    return render_template('editform.html', incident = incident, locations = locations, types = types, month = month, minute = minute, hour = hour)
+
+@app.route('/edit/submit', methods=['GET','POST'])
+def editsubmit():
+    incid = int(request.form['id'])
+    inc = db.session.query(models.Incident).filter(models.Incident.id == incid).one()
+    location_id = int(request.form['location'])
+    location = db.session.query(models.Location).filter(models.Location.id == location_id).one()
+    type_ids = request.form.getlist('incidents', type=int)
+    types = []
+    for t in type_ids:
+        typ = db.session.query(models.Type).filter(models.Type.id == t).one()
+        types.append(typ)
+    summary = request.form['summary field']
+    year = int(request.form['year dropdown'])
+    month = int(request.form['month dropdown'])
+    day = int(request.form['day dropdown'])
+    hour = int(request.form['hour dropdown'])
+    if request.form['AM/PM dropdown'] == '1':
+        if hour != 12:
+            hour = hour + 12
+    else:
+        if hour == 12:
+            hour = 00
+    minute = int(request.form['minute dropdown'])
+    dt = datetime.datetime(year, month, day, hour, minute)
+    setattr(inc, 'location', location)
+    setattr(inc, 'datetime', dt)
+    setattr(inc, 'summary', summary)
+    setattr(inc, 'types', types)
+    print(inc)
+    db.session.commit()
+    return redirect(url_for('blotter'))
 
 if __name__ == '__main__':
     app.run()

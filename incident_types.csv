@@ -1,1 +1,106 @@
-code,descriptionACC,AccidentALF,Alarm-fireALA,Alarm/notificationALC,Alcohol violationAOD,Alcohol- or drug-related incidentANIM,Animal issueARR,ArrestARS,Arson/attempted - per fire departmentASSA,AssaultASSI,AssistASSIM,Assist / motoristBIA,Bias-related incidentBOM,Bomb ThreatBRE,BreakBUR,BurglaryCAM,CampingCNDL/INC,Candle or incense burning in residence hallCLERY,Clery Act reportable incidentDAM,Damage to propertyDATV,Dating ViolenceDEC,Deceased individualDETV,Detector violationDISC,Disorderly conductDIS,DisturbanceDOG,Dog owner contactDOMV,Domestic ViolenceESC,EscortAODE,Evidence of drug useEXC,ExclusionFIRE,FireFIRI,Fire - intentionalFOU,Found propertyGRA,GraffitiHARA,HarassmentHAZ,Hazmat conditionHELD,Held doorHOM,HomicideINF,Information onlyINTP,Intoxicated personINV,InvestigationKID,KidnappingLOS,Lost propertyMAI,Maintenance issueAODMJ,Marijuana use or possessionMEDAM,Medical amnestyMEDAA,Medical assist - alcoholMEDAD,Medical assist - drugsMEDAO,Medical assist - otherMED,Medical callMEDTA,Medical transport - alcoholMEDTD,Medical transport - drugMEDTO,Medical transport - otherMEN,Mentally disturbed personMISS,Missing personNOC,No contact orderNOI,Noise complaintAODD,Other drug use or possessionPAR,Parking violationBLO,Parking/blocking driveFIRL,Parking/fire laneFIR,Parking/first warningHAN,Parking/handicapLOA,Parking/loading zoneNOP,Parking/no parking zoneOTH,Parking/otherRES,Parking/reserved spaceSEC,Parking/second warningSER,Parking/service vehicle onlyPATB,Patrol check - bicyclePATE,Patrol check - externalPATF,Patrol check - footPATI,Patrol check - internalPATIE,Patrol check - internal/externalPATV,Patrol check - vehiclePATS,Patrol check -- segwayPUB,Public indecencyROB,RobberyROOM,Room inspection/searchSEX,Sex OffenseSEXOS,Sex Offense -- statutory rapeSEXH,Sexual harassmentSHO,ShootingSMOV,Smoking violationSMOD,Smoking violation - dormSTAK,StakeoutSTALK,StalkingSTU,Student concernWEA,Subject with weaponSUSP,Suspicious person/activity/circsTHEB,Theft -- bikeTHEBP,Theft -- bike partsTHEC,Theft -- computerTHEO,Theft -- otherTHES,Theft from structureTHEV,Theft from vehicleTHEM,Theft of motor vehicleTHEF,Theft/dispatchTHR,Threat assessmentTIX,Title IX violationTRE,TrespassUAA,Unattended alcoholAODUA,Unattended alcoholUNA,Unauthorized entryVOID,Void reportWEL,Welfare check
+code,description,category
+ACC,Accident,Miscellaneous
+ALF,Alarm-fire,Medical or Other Assistance
+ALA,Alarm/notification,Medical or Other Assistance
+ALC,Alcohol violation,Substance Use Policy Violations
+AOD,Alcohol- or drug-related incident,Substance Use Policy Violations
+ANIM,Animal issue,Miscellaneous
+ARR,Arrest,Nonviolent Crime
+ARS,Arson/attempted - per fire department,Nonviolent Crime
+ASSA,Assault,Violent Crime
+ASSI,Assist,Medical or Other Assistance
+ASSIM,Assist / motorist,Medical or Other Assistance
+BIA,Bias-related incident,Title IX
+BOM,Bomb Threat,Violent Crime
+BRE,Break,Violent Crime
+BUR,Burglary,Theft
+CAM,Camping,Miscellaneous
+CNDL/INC,Candle or incense burning in residence hall,Housing Contract Violations
+CLERY,Clery Act reportable incident,Miscellaneous
+DAM,Damage to property,Miscellaneous
+DATV,Dating Violence,Title IX
+DEC,Deceased individual,Miscellaneous
+DETV,Detector violation,Housing Contract Violations
+DISC,Disorderly conduct,Nonviolent Crime
+DIS,Disturbance,Miscellaneous
+DOG,Dog owner contact,Miscellaneous
+DOMV,Domestic Violence,Title IX
+ESC,Escort,Medical or Other Assistance
+AODE,Evidence of drug use,Substance Use Policy Violations
+EXC,Exclusion,Miscellaneous
+FIRE,Fire,Miscellaneous
+FIRI,Fire - intentional,Miscellaneous
+FOU,Found property,Medical or Other Assistance
+GRA,Graffiti,Nonviolent Crime
+HARA,Harassment,Nonviolent Crime
+HAZ,Hazmat condition,Miscellaneous
+HELD,Held door,Miscellaneous
+HOM,Homicide,Violent Crime
+INF,Information only,Miscellaneous
+INTP,Intoxicated person,Miscellaneous
+INV,Investigation,Miscellaneous
+KID,Kidnapping,Violent Crime
+LOS,Lost property,Medical or Other Assistance
+MAI,Maintenance issue,Medical or Other Assistance
+AODMJ,Marijuana use or possession,Substance Use Policy Violations
+MEDAM,Medical amnesty,Medical or Other Assistance
+MEDAA,Medical assist - alcohol,Medical or Other Assistance
+MEDAD,Medical assist - drugs,Medical or Other Assistance
+MEDAO,Medical assist - other,Medical or Other Assistance
+MED,Medical call,Medical or Other Assistance
+MEDTA,Medical transport - alcohol,Medical or Other Assistance
+MEDTD,Medical transport - drug,Medical or Other Assistance
+MEDTO,Medical transport - other,Medical or Other Assistance
+MEN,Mentally disturbed person,Miscellaneous
+MISS,Missing person,Miscellaneous
+NOC,No contact order,Miscellaneous
+NOI,Noise complaint,Miscellaneous
+AODD,Other drug use or possession,Substance Use Policy Violations
+PAR,Parking violation,Miscellaneous
+BLO,Parking/blocking drive,Miscellaneous
+FIRL,Parking/fire lane,Miscellaneous
+FIR,Parking/first warning,Miscellaneous
+HAN,Parking/handicap,Miscellaneous
+LOA,Parking/loading zone,Miscellaneous
+NOP,Parking/no parking zone,Miscellaneous
+OTH,Parking/other,Miscellaneous
+RES,Parking/reserved space,Miscellaneous
+SEC,Parking/second warning,Miscellaneous
+SER,Parking/service vehicle only,Miscellaneous
+PATB,Patrol check - bicycle,Miscellaneous
+PATE,Patrol check - external,Miscellaneous
+PATF,Patrol check - foot,Miscellaneous
+PATI,Patrol check - internal,Miscellaneous
+PATIE,Patrol check - internal/external,Miscellaneous
+PATV,Patrol check - vehicle,Miscellaneous
+PATS,Patrol check -- segway,Miscellaneous
+PUB,Public indecency,Nonviolent Crime
+ROB,Robbery,Theft
+ROOM,Room inspection/search,Housing Contract Violations
+SEX,Sex Offense,Title IX
+SEXOS,Sex Offense -- statutory rape,Title IX
+SEXH,Sexual harassment,Title IX
+SHO,Shooting,Violent Crime
+SMOV,Smoking violation,Housing Contract Violations
+SMOD,Smoking violation - dorm,Housing Contract Violations
+STAK,Stakeout,Violent Crime
+STALK,Stalking,Title IX
+STU,Student concern,Miscellaneous
+WEA,Subject with weapon,Violent Crime
+SUSP,Suspicious person/activity/circs,Miscellaneous
+THEB,Theft -- bike,Theft
+THEBP,Theft -- bike parts,Theft
+THEC,Theft -- computer,Theft
+THEO,Theft -- other,Theft
+THES,Theft from structure,Theft
+THEV,Theft from vehicle,Theft
+THEM,Theft of motor vehicle,Theft
+THEF,Theft/dispatch,Theft
+THR,Threat assessment,Miscellaneous
+TIX,Title IX violation,Title IX
+TRE,Trespass,Nonviolent Crime
+UAA,Unattended alcohol,Substance Use Policy Violations
+AODUA,Unattended alcohol,Substance Use Policy Violations
+UNA,Unauthorized entry,Nonviolent Crime
+VOID,Void report,Miscellaneous
+WEL,Welfare check,Medical or Other Assistance
