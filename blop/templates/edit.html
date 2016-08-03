@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<h1>Edit a Past Entry</h1>
+	<form action="/edit/form" method="post">
+		<div id="id">
+			<label for="id">Please enter the ID of the incident you wish to edit:</label>
+			<input type="number" id="id field" name="id" >
+			<br><br>
+		</div>
+		<div id="submit">
+			<input type="submit" value="Submit">
+		</div>
+	</form>
+{% endblock %}
