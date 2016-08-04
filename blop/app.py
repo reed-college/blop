@@ -18,7 +18,7 @@ POSTS_PER_PAGE = 20
 def submit():
     types = db.session.query(models.Type).order_by(models.Type.code).all()
     locations = db.session.query(models.Location).order_by(models.Location.name).all()
-    return render_template('submit.html', types=types, locations=locations)
+    return render_template('test.html', types=types, locations=locations)
 
 
 @app.route('/blotter')
