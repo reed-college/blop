@@ -230,31 +230,25 @@ def editform():
 def editsubmit():
     incid = int(request.form['id'])
     inc = db.session.query(models.Incident).filter(models.Incident.id == incid).one()
-    print(inc.location.name, inc.types, inc.summary, inc.datetime)
     location_id = int(request.form['location'])
     location = db.session.query(models.Location).filter(models.Location.id == location_id).one()
-    print(location)
     type_ids = request.form.getlist('incidents', type=int)
     types = []
     for t in type_ids:
         typ = db.session.query(models.Type).filter(models.Type.id == t).one()
         types.append(typ)
-    print(types)
     summary = request.form['summary field']
-    print(summary)
     year = int(request.form['year dropdown'])
     month = int(request.form['month dropdown'])
     day = int(request.form['day dropdown'])
     hour = int(request.form['hour dropdown'])
     minute = int(request.form['minute dropdown'])
     dt = datetime.datetime(year, month, day, hour, minute)
-    print(dt)
     setattr(inc, 'location', location)
     setattr(inc, 'datetime', dt)
     setattr(inc, 'summary', summary)
     setattr(inc, 'types', types)
     db.session.commit()
-    print(inc.location.name, inc.types, inc.summary, inc.datetime)
     return redirect(url_for('blotter'))
 
 if __name__ == '__main__':
