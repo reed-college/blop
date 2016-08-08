@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<h1><div style='align-center'>Submit an Event</div></h1>
+	<script src='{{ url_for("static", filename="forms.js")}}' language="Javascript" type="text/javascript"></script>
+	<script src="static/js/libs/jquery-3.1.0.min.js" language="Javascript" type="text/javascript"></script>
+	<script src="static/js/libs/jquery-ui-1.12.0.custom/jquery-ui.min.js" language="Javascript" type="text/javascript"></script>
+	<form action="/processform" method="post">
+		<div id="autoType">
+			<label>Code</label><br>
+			<input id="incident" type="text" size="10" />
+			<script type="text/javascript">
+			$(function() {
+				var tagList = [];
+				{% for type in types %}
+				var thisType = "{{ type.code }}";
+				tagList.push("{{ type.code }}");
+				{% endfor %}
+				$("#incident").autocomplete({
+					source: tagList,
+					autoFocus:true
+				});
+			});
+			</script>
+		</div>
+	</form>
+
+{% endblock %}
