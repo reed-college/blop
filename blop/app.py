@@ -18,7 +18,7 @@ POSTS_PER_PAGE = 20
 def submit():
     types = db.session.query(models.Type).order_by(models.Type.code).all()
     locations = db.session.query(models.Location).order_by(models.Location.name).all()
-    return render_template('test.html', types=types, locations=locations)
+    return render_template('submit.html', types=types, locations=locations)
 
 
 @app.route('/blotter')
@@ -43,12 +43,10 @@ def search():
     locations = db.session.query(models.Location).order_by(models.Location.name).all()
     return render_template('search.html', types=types, locations=locations)
 
-
-@app.route('/processform', methods=['GET', 'POST'])
+@app.route('/processform', methods=['POST'])
 def processform():
-
     types = []
-    codelist = request.form.getlist('incidents', type=int)
+    codelist = request.form.getlist('incidents')
     for c in codelist:
         typ = db.session.query(models.Type).filter(models.Type.id == c).first()
         types.append(typ)
@@ -60,18 +58,18 @@ def processform():
     day = int(request.form['day dropdown'])
     year = int(request.form['year dropdown'])
     hour = int(request.form['hour dropdown'])
-    ampm = int(request.form['AM/PM dropdown'])
-    if ampm == 1:
-        if hour != 12:
-            hour = hour + 12
-    else:
-        if hour == 12:
-            hour = 00
+    # ampm = int(request.form['time'])
+    # if ampm == 1:
+    #     if hour != 12:
+    #         hour = hour + 12
+    # else:
+    #     if hour == 12:
+    #         hour = 00
     minute = int(request.form['minute dropdown'])
 
     dt = datetime.datetime(year, month, day, hour, minute)
 
-    incident_summary = str(request.form['summary field'])
+    incident_summary = str(request.form['summary'])
 
     incident = models.Incident(
                                datetime=dt,
@@ -87,14 +85,14 @@ def processform():
 
 @app.route('/blottersearch', methods=['GET', 'POST'])
 def blottersearch():
-    
+
     starthour = int(request.form['start_hour'])
-    if request.form['ampm_start']=='am':    
+    if request.form['ampm_start']=='am':
         if starthour == 12:
             starthour = 00
 
     if request.form['ampm_start']=='pm' and starthour != 00:
-        starthour = starthour + 12    
+        starthour = starthour + 12
 
     endhour = int(request.form['end_hour'])
     if request.form['ampm_end'] == 'am':
@@ -110,7 +108,7 @@ def blottersearch():
 
     endyear = int(request.form['end_year'])
     endmonth = int(request.form['end_month'])
-    endday = int(request.form['end_day'])  
+    endday = int(request.form['end_day'])
 
     today = datetime.datetime.today()
 
